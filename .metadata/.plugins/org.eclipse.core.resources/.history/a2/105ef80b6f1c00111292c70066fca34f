@@ -1,7 +1,0 @@
-package com.rays.common.impl;
-
-import com.rays.common.BaseDTO;
-
-public class BaseServiceImpl<T extends BaseDTO>  {
-
-}

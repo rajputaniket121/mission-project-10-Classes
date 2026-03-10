@@ -1,7 +1,0 @@
-package com.rays.dao.impl;
-
-import com.rays.dao.RoleDAOInt;
-
-public class RoleDAOImpl implements RoleDAOInt {
-
-}

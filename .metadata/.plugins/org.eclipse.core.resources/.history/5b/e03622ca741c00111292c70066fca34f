@@ -1,8 +1,0 @@
-package com.rays.ctl;
-
-import com.rays.common.BaseCtl;
-import com.rays.dto.UserDTO;
-
-public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt<UserDTo>> {
-
-}

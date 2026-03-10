@@ -1,7 +1,0 @@
-package com.rays.service.impl;
-
-import com.rays.service.RoleServiceInt;
-
-public class RoleServiceImpl implements RoleServiceInt{
-
-}
