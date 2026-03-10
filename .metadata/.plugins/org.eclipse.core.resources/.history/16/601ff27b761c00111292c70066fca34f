@@ -1,0 +1,7 @@
+package com.rays.ctl;
+
+import com.rays.common.BaseCtl;
+
+public class RoleCtl extends BaseCtl<BaseDTO, BaseForm, BaseServiceInt<T>> {
+
+}

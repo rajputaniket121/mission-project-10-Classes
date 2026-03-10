@@ -1,0 +1,7 @@
+package com.rays.dao.impl;
+
+import com.rays.dao.UserDAOInt;
+
+public class UserDAOImpl implements UserDAOInt {
+
+}

@@ -1,0 +1,8 @@
+package com.rays.dao.impl;
+
+import com.rays.common.impl.BaseDAOImpl;
+import com.rays.dao.RoleDAOInt;
+
+public class RoleDAOImpl extends BaseDAOImpl<BaseDTO> implements RoleDAOInt {
+
+}

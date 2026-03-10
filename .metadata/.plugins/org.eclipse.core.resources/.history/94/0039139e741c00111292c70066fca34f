@@ -1,0 +1,5 @@
+package com.rays.service.impl;
+
+public class UserServiceImpl {
+
+}
