@@ -11,6 +11,7 @@ import com.rays.common.BaseDAOInt;
 import com.rays.common.BaseDTO;
 import com.rays.common.BaseServiceInt;
 import com.rays.common.UserContext;
+import com.rays.exception.RecordNotFoundException;
 
 @Transactional
 public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implements BaseServiceInt<T> {
@@ -28,6 +29,11 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(T dto, UserContext userContext) {
+		T existDto = findById(dto.getId(), userContext);
+		if(existDto!=null) {
+			dto.setCreatedBy(existDto.getCreatedBy());
+			dto.setCreatedDateTime(existDto.getCreatedDateTime());
+		}
 		dao.update(dto, userContext);
 	}
 
@@ -47,9 +53,6 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 	@Transactional(propagation = Propagation.REQUIRED)
 	public T delete(long id, UserContext userContext) {
 		T dto = findById(id, userContext);
-		if(dto == null) {
-			throw new RuntimeException("Record not found");
-		}
 		dao.delete(dto, userContext);
 		return dto;
 	}
@@ -58,9 +61,6 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 	@Transactional(readOnly = true)
 	public T findById(long id, UserContext userContext) {
 		T dto =  dao.findByPk(id, userContext);
-		if(dto==null) {
-			throw new RuntimeException("Record not found");
-		}
 		return dto;
 	}
 
@@ -68,9 +68,6 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 	@Transactional(readOnly = true)
 	public T findByUniqueKey(String attribute, String val, UserContext userContext) {
 		T dto =  dao.findByUniqueKey(attribute, val, userContext);
-		if(dto==null) {
-			throw new RuntimeException("Record not found");
-		}
 		return dto;
 	}
 
@@ -80,7 +77,7 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 		
 		List<T> list =  dao.search(dto, pageNo, pageSize, userContext);
 		if(list.size() == 0) {
-			throw new RuntimeException("Record not found");
+			throw new RecordNotFoundException("Record not found");
 		}
 		return list;
 	}

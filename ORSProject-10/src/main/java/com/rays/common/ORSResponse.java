@@ -12,6 +12,13 @@ public class ORSResponse {
 
 	private Map<String, Object> result = new HashMap<String, Object>();
 
+	public ORSResponse() {
+	}
+
+	public ORSResponse(boolean success) {
+		this.success = success;
+	}
+
 	public boolean isSuccess() {
 		return success;
 	}

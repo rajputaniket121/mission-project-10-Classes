@@ -16,19 +16,15 @@ import com.rays.common.BaseDAOInt;
 import com.rays.common.BaseDTO;
 import com.rays.common.UserContext;
 
-public class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
+public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
 
-	protected List<Predicate> getWhereClause(T dto, CriteriaBuilder builder, Root<T> qRoot) {
-		return null;
-	}
+	protected abstract List<Predicate> getWhereClause(T dto, CriteriaBuilder builder, Root<T> qRoot);
 
-	public Class<T> getDTOClass() {
-		return null;
-	}
-
+	public abstract Class<T> getDTOClass();
+	
 	public void populate(T dto, UserContext userContext) {
 	}
 
@@ -95,7 +91,7 @@ public class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 
 		T dto = null;
 
-		if (result.size() == 0) {
+		if (result.size() == 1) {
 			dto = result.get(0);
 		}
 
