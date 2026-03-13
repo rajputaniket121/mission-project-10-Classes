@@ -11,7 +11,6 @@ import com.rays.common.BaseDAOInt;
 import com.rays.common.BaseDTO;
 import com.rays.common.BaseServiceInt;
 import com.rays.common.UserContext;
-import com.rays.exception.RecordNotFoundException;
 
 @Transactional
 public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implements BaseServiceInt<T> {
@@ -73,18 +72,14 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<T> search(T dto, int pageNo, int pageSize, UserContext userContext) {
-		
+	public List search(T dto, int pageNo, int pageSize, UserContext userContext) {
 		List<T> list =  dao.search(dto, pageNo, pageSize, userContext);
-		if(list.size() == 0) {
-			throw new RecordNotFoundException("Record not found");
-		}
 		return list;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<T> search(T dto, UserContext userContext) {
+	public List search(T dto, UserContext userContext) {
 		return search(dto, 0, 0, userContext);
 	}
 

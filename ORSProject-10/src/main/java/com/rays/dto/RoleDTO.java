@@ -58,4 +58,11 @@ public class RoleDTO extends BaseDTO {
 		return "Role";
 	}
 
+	@Override
+	public String toString() {
+		return "RoleDTO [name=" + name + ", description=" + description + "]";
+	}
+	
+	
+
 }

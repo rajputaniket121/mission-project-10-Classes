@@ -35,6 +35,12 @@ public class RoleForm extends BaseForm<RoleDTO> {
 		dto.setDescription(description);
 		return dto;
 	}
+
+	@Override
+	public String toString() {
+		return "RoleForm [name=" + name + ", description=" + description + "]";
+	}
+	
 	
 
 }
