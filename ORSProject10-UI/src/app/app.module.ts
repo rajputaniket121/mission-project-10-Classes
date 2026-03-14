@@ -18,8 +18,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceService } from './auth-service.service';
 import { EndpointServiceService } from './endpoint-service.service';
-import { LocatorServiceService } from './locator-service.service';
+import { ServiceLocatorService } from './service-locator.service';
 import { HttpServiceService } from './http-service.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,11 +38,11 @@ import { HttpServiceService } from './http-service.service';
     FooterComponent,
     DashboardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
     AuthServiceService,
     EndpointServiceService,
-    LocatorServiceService,
+    ServiceLocatorService,
     HttpServiceService,
   ],
   bootstrap: [AppComponent],

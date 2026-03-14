@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ORSResponse {
-	public static final String INPUT_EROOR = "inputError";
+	public static final String INPUT_EROOR = "inputerror";
 	public static final String MESSSAGE = "message";
 	public static final String DATA = "data";
 
@@ -44,7 +44,7 @@ public class ORSResponse {
 	}
 
 	public void addMessage(Object value) {
-		result.put(INPUT_EROOR, value);
+		result.put(MESSSAGE, value);
 	}
 
 	public void addResult(String key, Object value) {

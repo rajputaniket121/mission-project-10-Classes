@@ -26,7 +26,7 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 	public ORSResponse preload() {
 		ORSResponse orsResponse = new ORSResponse(true);
 		try {
-			List<DropdownList> roleList = roleService.search(new RoleDTO(), userContext);
+			List<DropdownList> roleList = roleService.search(null, userContext);
 			orsResponse.addResult("roleList",roleList);
 		}catch (Exception e) {
 			orsResponse.setSuccess(false);

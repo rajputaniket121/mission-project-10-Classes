@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rays.dto.UserDTO;
 
@@ -135,24 +136,40 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 		return res;
 	}
 
-	@PostMapping(value = "delete/{ids}")
-	public ORSResponse delete(@PathVariable Long[] ids) {
-		ORSResponse res = new ORSResponse();
+	
+	@PostMapping("deleteMany/{ids}")
+	public ORSResponse deleteMany(@PathVariable String[] ids, @RequestParam("pageNo") String pageNo,
+			@RequestBody F form) {
+
+		ORSResponse res = new ORSResponse(true);
 		try {
-			for (long id : ids) {
-				service.delete(id, userContext);
+			for (String id : ids) {
+				service.delete(Long.parseLong(id), userContext);
 			}
-			res.setSuccess(true);
-			res.addMessage("Records Deleted Successfully");
+
+			T dto = form.getDto();
+
+			List<T> list = service.search(dto, Integer.parseInt(pageNo), pageSize, userContext);
+
+			List<T> nextList = service.search(dto, Integer.parseInt(pageNo + 1), pageSize, userContext);
+
+			if (list.size() == 0) {
+				res.setSuccess(false);
+				res.addMessage("Record not found..!!");
+			} else {
+				res.setSuccess(true);
+				res.addMessage("Records Deleted Successfully");
+				res.addData(list);
+				res.addResult("nextListSize", nextList.size());
+			}
 		} catch (Exception e) {
 			res.setSuccess(false);
-			res.addMessage("Error in Delete");
-			res.addMessage(e.getMessage());
-			e.printStackTrace();
+			res.addMessage("Error in Delete "+e.getMessage());
 		}
 		return res;
 	}
-
+	
+	
 	@RequestMapping(value = "search/{pageNo}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse search(@RequestBody(required = false) F form, @PathVariable(required = false) int pageNo) {
 		ORSResponse response = new ORSResponse();
@@ -181,7 +198,6 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 			}
 		} catch (Exception e) {
 			response.setSuccess(false);
-			response.addMessage("Error in Delete");
 			response.addMessage(e.getMessage());
 			e.printStackTrace();
 		}
