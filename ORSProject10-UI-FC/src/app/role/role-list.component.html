@@ -1,0 +1,90 @@
+<div align="center" class="container-fluid px-4 py-2">
+    <h1 align="center" class="text-primary fw-bold mb-2" style="margin-bottom: 5px; font-size: 1.8rem;">Role List</h1>
+
+    <div style="height: auto; margin-bottom: 5px; text-align: center;">
+        <div class="text-success" style="margin: 0; font-size: 0.9rem;" *ngIf="!form.error && form.message">{{
+            form.message }}</div>
+        <div class="text-danger" style="margin: 0; font-size: 0.9rem;" *ngIf="form.error && form.message">{{
+            form.message }}</div>
+    </div>
+
+    <div *ngIf="form.list.length > 0">
+        <!-- Search Filter Section -->
+        <div class="mb-3">
+            <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+                <div class="d-flex align-items-center gap-2">
+                    <label class="fw-bold text-secondary mb-0" style="font-size: 0.9rem;"><b>Role:</b></label>
+                    <select name="id" [(ngModel)]="form.searchParams.id" class="form-select form-select-sm"
+                        style="width: 180px; font-size: 0.9rem;">
+                        <option value="undefined">------------Select------------</option>
+                        <option *ngFor="let obj of form.preload.roleList" [value]="obj.key">{{obj.value}}</option>
+                    </select>
+                </div>
+                <div class="d-flex gap-2">
+                    <button (click)="search()" class="btn btn-primary btn-sm"
+                        style="font-size: 0.9rem; padding: 4px 15px;">Search</button>
+                    <button (click)="reset()" class="btn btn-outline-secondary btn-sm"
+                        style="font-size: 0.9rem; padding: 4px 15px;">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section with Larger Size -->
+        <div class="table-responsive" style="max-height: 450px; overflow-y: auto;">
+            <table class="table table-bordered table-hover mb-0" style="width: 100%; font-size: 0.95rem;">
+                <thead class="table-light sticky-top">
+                    <tr style="background-color: #e1e6f1e3;">
+                        <th class="text-center" style="width: 8%; padding: 12px 8px;">
+                            <div class="d-flex flex-column align-items-center">
+                                <input type="checkbox" class="form-check-input" [(ngModel)]="isMasterSel"
+                                    (change)="checkUncheckAll($event)" style="margin: 0; transform: scale(1.1);" />
+                                <span class="small text-muted mt-1" style="font-size: 0.75rem;">Select All</span>
+                            </div>
+                        </th>
+                        <th class="text-center" style="width: 8%; padding: 12px 8px;">S.No</th>
+                        <th class="text-center" style="width: 35%; padding: 12px 8px;">Name</th>
+                        <th class="text-center" style="width: 39%; padding: 12px 8px;">Description</th>
+                        <th class="text-center" style="width: 10%; padding: 12px 8px;">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center" *ngFor="let m of form.list; let i = index" style="height: 45px;">
+                        <td class="text-center align-middle" style="padding: 10px 8px;">
+                            <input type="checkbox" class="form-check-input" #checkboxes (change)="checklistUpdate()"
+                                [id]="m.id" [value]="isMasterSel" style="margin: 0; transform: scale(1.1);">
+                        </td>
+                        <td class="text-center align-middle fw-semibold" style="padding: 10px 8px;">{{(form.pageNo*5)+i+
+                            1}}</td>
+                        <td class="text-center align-middle" style="padding: 10px 8px;">{{m.name}}</td>
+                        <td class="text-center align-middle" style="padding: 10px 8px;">{{m.description}}</td>
+                        <td class="text-center align-middle" style="padding: 10px 8px;">
+                            <a (click)="forward( '/role/' +  m.id)"
+                                class="btn btn-link text-primary text-decoration-none p-0"
+                                style="cursor: pointer; font-size: 0.9rem; font-weight: 500;">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Action Buttons - Larger and Visible -->
+        <div class="mt-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <button (click)="previous()" class="btn btn-outline-secondary"
+                    style="font-size: 0.9rem; padding: 5px 20px;" [disabled]="form.pageNo == 0">Previous</button>
+                <div class="d-flex gap-3">
+                    <button (click)="forward('/role')" class="btn btn-primary"
+                        style="font-size: 0.9rem; padding: 5px 25px;">New</button>
+                    <button (click)="deleteMany()" class="btn btn-danger"
+                        style="font-size: 0.9rem; padding: 5px 20px;">Delete</button>
+                </div>
+                <button (click)="next()" class="btn btn-outline-secondary" style="font-size: 0.9rem; padding: 5px 20px;"
+                    [disabled]="form.nextListSize == 0">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="form.list.length == 0" class="text-center py-2">
+        <button (click)="reset()" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 30px;">Back</button>
+    </div>
+</div>

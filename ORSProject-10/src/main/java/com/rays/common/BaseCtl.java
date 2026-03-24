@@ -34,7 +34,7 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 
 	@ModelAttribute
 	public void setUserContext(HttpSession session) {
-		userContext = (UserContext) session.getAttribute("userContext");
+		userContext = UserContextHolder.getContext();
 		if (userContext == null) {
 			UserDTO dto = new UserDTO();
 			dto.setLoginId("rajput@gmail.com"); // fallback
@@ -85,7 +85,7 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 			if (dto.getUniqueKey() != null && !dto.getUniqueKey().equals("")) {
 
 				T existsDTO = service.findByUniqueKey(dto.getUniqueKey(), dto.getUniqueValue(), userContext);
-				System.out.println(existsDTO != null && (dto.getId() == 0 || existsDTO.getId() != dto.getId()));
+				System.out.println(existsDTO != null && (dto.getId() != null || !existsDTO.getId().equals(dto.getId())));
 
 				if (existsDTO != null && (dto.getId() == 0 || existsDTO.getId() != dto.getId())) {
 					res.addMessage(dto.getLabel() + " already exists");
@@ -109,7 +109,7 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 			}
 		} catch (Exception e) {
 			res.setSuccess(false);
-			res.addMessage(e.getMessage());
+			res.addMessage("Database Down Please Try again later");
 			e.printStackTrace();
 		}
 		return res;
@@ -130,7 +130,7 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 			}
 		} catch (Exception e) {
 			res.setSuccess(false);
-			res.addMessage(e.getMessage());
+			res.addMessage("Database Down Please Try again later");
 			e.printStackTrace();
 		}
 		return res;
@@ -164,7 +164,7 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 			}
 		} catch (Exception e) {
 			res.setSuccess(false);
-			res.addMessage("Error in Delete "+e.getMessage());
+			res.addMessage("Database Down Please Try again later");
 		}
 		return res;
 	}
@@ -176,13 +176,10 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 
 		try {
 			pageNo = (pageNo < 0) ? 0 : pageNo;
-
-			T dto = form.getDto();
 			
-
-			if(dto.getId()==0) {
-				dto = null;
-			}
+			System.out.println(form);
+			
+			T dto = form.getDto();
 			
 			List<T> list = service.search(dto, pageNo, pageSize, userContext);
 
@@ -198,7 +195,7 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 			}
 		} catch (Exception e) {
 			response.setSuccess(false);
-			response.addMessage(e.getMessage());
+			response.addMessage("Database Down Please Try again later");
 			e.printStackTrace();
 		}
 		return response;
