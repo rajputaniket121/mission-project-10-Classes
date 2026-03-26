@@ -1,8 +1,14 @@
 .metadata/
+./ORSProject-10/target
+./ORSProject-10-FC/target
+
+
 ./ORSProject10-UI/.angular
 ./ORSProject10-UI/.vscode
 ./ORSProject10-UI/node_modules
+./ORSProject10-UI/dist
 
 ./ORSProject10-UI-FC/.angular
 ./ORSProject10-UI-FC/.vscode
 ./ORSProject10-UI-FC/node_modules
+./ORSProject10-UI-FC/dist

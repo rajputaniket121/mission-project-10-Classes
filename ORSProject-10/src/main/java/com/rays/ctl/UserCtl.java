@@ -1,8 +1,11 @@
 package com.rays.ctl;
 
+
 import java.io.OutputStream;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -36,24 +39,27 @@ import com.rays.service.UserServiceInt;
 public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 	@Autowired
 	private RoleServiceInt roleService;
-	
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
 	@Autowired
 	public AttachmentServiceInt attachmentService;
-	
+
 	@GetMapping(value = "preload")
 	public ORSResponse preload() {
 		ORSResponse orsResponse = new ORSResponse(true);
 		try {
 			List<DropdownList> roleList = roleService.search(null, userContext);
-			orsResponse.addResult("roleList",roleList);
-		}catch (Exception e) {
+			orsResponse.addResult("roleList", roleList);
+		} catch (Exception e) {
 			orsResponse.setSuccess(false);
 			orsResponse.addMessage(e.getMessage());
 			e.printStackTrace();
 		}
 		return orsResponse;
 	}
-	
+
 	@PostMapping("myProfile")
 	public ORSResponse myProfile(@RequestBody @Valid MyProfileForm form, BindingResult bindingResult) {
 
@@ -71,7 +77,7 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 		dto.setGender(form.getGender());
 
 		service.update(dto, userContext);
-		
+
 		res.setSuccess(true);
 		res.addMessage("Your Profile updated successfully..!!");
 
@@ -101,7 +107,7 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 
 		return res;
 	}
-	
+
 	@PostMapping("/profilePic/{userId}")
 	public ORSResponse uploadPic(@PathVariable Long userId, @RequestParam("file") MultipartFile file,
 			HttpServletRequest req) {
@@ -112,7 +118,7 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 
 		attachmentDto.setUserId(userId);
 
-		UserDTO userDto = service.findById(userId,userContext);
+		UserDTO userDto = service.findById(userId, userContext);
 
 		if (userDto.getImageId() != null && userDto.getImageId() > 0) {
 
@@ -120,13 +126,13 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 
 		}
 
-		Long imageId = attachmentService.save(attachmentDto,userContext);
+		Long imageId = attachmentService.save(attachmentDto, userContext);
 
 		if (userDto.getImageId() == null) {
 
 			userDto.setImageId(imageId);
 
-			service.update(userDto,userContext);
+			service.update(userDto, userContext);
 		}
 
 		ORSResponse res = new ORSResponse(true);
@@ -160,6 +166,6 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
+		
 }

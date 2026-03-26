@@ -14,7 +14,7 @@ export class AuthServiceService {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.log('in auth service intercept method....!!!')
+    //console.log('in auth service intercept method....!!!')
 
     if (localStorage.getItem('fname') && localStorage.getItem('token')) {
       this.token = localStorage.getItem('token')
@@ -26,7 +26,7 @@ export class AuthServiceService {
         }
       })
     }
-    console.log(req.headers.get("Authorization"))
+    //console.log(req.headers.get("Authorization"))
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="p3" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bb32f66a-369a-48c3-926c-28e28f61b479">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ORSProject-10"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT ROLL_NO, NAME, PHYSICS, CHEMISTRY, MATHS, 
+			(PHYSICS + CHEMISTRY + MATHS) AS total 
+			FROM st_marksheet 
+			WHERE PHYSICS > 33 AND CHEMISTRY > 33 AND MATHS > 33 
+			ORDER BY total DESC 
+			LIMIT 0,10]]>
+	</queryString>
+	<field name="ROLL_NO" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="PHYSICS" class="java.lang.Integer"/>
+	<field name="CHEMISTRY" class="java.lang.Integer"/>
+	<field name="MATHS" class="java.lang.Integer"/>
+	<field name="total" class="java.lang.Long"/>
+	<variable name="serialNo" class="java.lang.Integer" incrementType="Group" incrementGroup="ROLL_NO" calculation="Count">
+		<variableExpression><![CDATA[$V{serialNo} == null ? 1 : $V{serialNo} + 1]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="ROLL_NO">
+		<groupExpression><![CDATA[$F{ROLL_NO}]]></groupExpression>
+	</group>
+	<group name="NAME">
+		<groupExpression><![CDATA[$F{NAME}]]></groupExpression>
+	</group>
+	<group name="PHYSICS">
+		<groupExpression><![CDATA[$F{PHYSICS}]]></groupExpression>
+	</group>
+	<group name="CHEMISTRY">
+		<groupExpression><![CDATA[$F{CHEMISTRY}]]></groupExpression>
+	</group>
+	<group name="MATHS">
+		<groupExpression><![CDATA[$F{MATHS}]]></groupExpression>
+	</group>
+	<group name="total">
+		<groupExpression><![CDATA[$F{total}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100">
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement mode="Opaque" x="160" y="10" width="220" height="59" forecolor="#919994" backcolor="#000000" uuid="c350d8d1-d6a8-44ec-9dfe-01ec3a499c72"/>
+				<imageExpression><![CDATA["https://www.raystec.com/assets/img/rays/customLogoOuterglow.png"]]></imageExpression>
+			</image>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="20" y="35" width="100" height="30" uuid="c92bca29-399b-48e6-8dc9-00ef64739a6f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="24" width="70" height="30" uuid="2f6d83b4-37ec-4099-a121-3cc858b5c5d1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="51">
+			<staticText>
+				<reportElement x="11" y="-20" width="532" height="60" uuid="bda9f254-8473-4bf1-8a09-89dc14c7b5f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="23" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[MARKSHEET MERIT LIST]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement x="-20" y="50" width="595" height="1" uuid="70d99f51-efda-4a36-b0b3-12518aff6cf8"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="20" width="70" height="20" uuid="c5a54334-43fc-4e50-9d3e-5208e68934d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Serial No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="20" width="70" height="20" uuid="da9e9a2c-78f1-4e6b-9501-806c6702692f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[ROLL_NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="20" width="90" height="20" uuid="6970e509-3cf3-40f2-a7d8-b3d7089ecd02"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="20" width="75" height="20" uuid="60a6a6f6-4d71-4fd2-ad58-bf97226901a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[PHYSICS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="20" width="85" height="20" uuid="35058fcc-1dc1-46a3-9a27-5223048d511f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[CHEMISTRY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="20" width="75" height="20" uuid="b8046300-7eff-4c9e-9d0a-36df08703155"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[MATHS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="20" width="80" height="20" uuid="ec318bf4-a269-477f-9ba6-45d686e1a44a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42">
+			<textField>
+				<reportElement x="0" y="2" width="70" height="18" uuid="b4f0993e-d160-4ba4-a909-1a7702c3f22e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{serialNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="2" width="70" height="18" uuid="b2f5974a-57d8-48c4-93c1-9ad803c2d49b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ROLL_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="2" width="90" height="18" uuid="fb3caf08-66c2-4012-9c89-2ebdc3442ae0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="2" width="75" height="18" uuid="eb659f57-da61-48d6-87a3-44333c789f79"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PHYSICS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="2" width="85" height="18" uuid="ec7bb401-8dcf-4ec5-ae3c-984088115f19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CHEMISTRY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="2" width="75" height="18" uuid="d4bc0bbd-b8e9-43e3-8cac-7bd972770f6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MATHS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="2" width="80" height="18" uuid="6995708e-93b8-42d7-89fd-d57ea8259e40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="84"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="79">
+			<staticText>
+				<reportElement x="128" y="49" width="298" height="30" uuid="8edf0073-9f6c-496b-8ab2-b7d111effd38"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[© Aniket Rajput]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement x="-20" y="50" width="595" height="1" uuid="07d43e44-16b6-4739-af14-c2429f81a61d"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="16">
+			<line direction="BottomUp">
+				<reportElement x="-20" y="2" width="595" height="1" uuid="566deb69-d3d3-43b0-9e44-7135df2450b8"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

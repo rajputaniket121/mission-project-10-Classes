@@ -92,6 +92,7 @@ com\rays\service\JWTUserDetailsService.class
 com\rays\dao\impl\StudentDAOImpl.class
 com\rays\dto\RoleDTO.class
 com\rays\common\BaseDAOInt.class
+com\rays\common\ApplicationExceptionHandlerCtl.class
 com\rays\dao\impl\TimetableDAOImpl.class
 com\rays\form\SubjectForm.class
 com\rays\dao\UserDAOInt.class
