@@ -22,7 +22,7 @@ public class ORSProject10SpringBootApplication {
 		WebMvcConfigurer w = new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				CorsRegistration cors = registry.addMapping("/**").allowedOrigins("http://localhost:4200")
+				CorsRegistration cors = registry.addMapping("/**").allowedOrigins("http://localhost:4200","http://localhost")
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").allowedHeaders("*")
 						.allowCredentials(true);
 			}
