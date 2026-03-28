@@ -37,6 +37,9 @@ import { MyprofileComponent } from './user/myprofile.component';
 import { ChangepasswordComponent } from './user/changepassword.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { GetmarksheetComponent } from './marksheet/getmarksheet.component';
+import { MarksheetmeritListComponent } from './marksheet/marksheetmerit-list.component';
+import { CommonModule } from '@angular/common';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -71,8 +74,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgotpasswordComponent,
     MyprofileComponent,
     ChangepasswordComponent,
+    GetmarksheetComponent,
+    MarksheetmeritListComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,
+  imports: [BrowserModule, CommonModule, AppRoutingModule, HttpClientModule, FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
