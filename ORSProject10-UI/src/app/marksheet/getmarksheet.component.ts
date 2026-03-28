@@ -19,11 +19,6 @@ export class GetmarksheetComponent extends BaseCtl {
 
   go() {
     var _self = this;
-    console.log("onClickSubmit");
-    console.log(this.form.data);
-    console.log(this.form.data.rollNo);
-
-
     this.httpservice.get("http://localhost:8080/Marksheet/rollno/" + this.form.data.rollNo, function (res: any) {
 
       if (res.success) {
@@ -31,14 +26,18 @@ export class GetmarksheetComponent extends BaseCtl {
         if (_self.form.list.length == 0) {
           _self.form.message = "No record found";
           _self.form.error = true;
+          _self.form.success = res.success;
         }
         console.log("List Size", _self.form.list.length);
       } else {
         _self.form.error = false;
         _self.form.message = res.result.message;
+        _self.form.success = res.success;
       }
-      console.log('FORM', _self.form);
+      // console.log('FORM', _self.form);
+      console.log("Success value ", _self.form.success);
     });
+
   }
 
 }
