@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +30,29 @@ public class MarksheetCtl extends BaseCtl<MarksheetDTO,MarksheetForm, MarksheetS
 		res.addResult("studentList", list);
 		return res;
 	}
+	
+	
+	@GetMapping("rollno/{rollNo}")
+	public ORSResponse rollNo(@PathVariable String rollNo) {
+		ORSResponse res = new ORSResponse(true);
+		MarksheetDTO dto = service.findByRollNo(rollNo, userContext);
+		if (dto != null) {
+			res.addData(dto);
+		} else {
+			res.setSuccess(false);
+			res.addMessage("Record not found");
+		}
+		return res;
+	}
+	
+	@GetMapping("meritlist")
+	public ORSResponse getMeritList() {
+		List<MarksheetDTO> list = service.getMeritList(userContext);
+		ORSResponse res = new ORSResponse(true);
+		res.addResult("list",list);
+		return res;
+	}
+	
+	
 
 }

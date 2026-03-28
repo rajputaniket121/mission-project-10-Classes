@@ -81,23 +81,24 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 
 		try {
 			T dto = form.getDto();
+			T existsDTO = service.findByUniqueKey(dto.getUniqueKey(), dto.getUniqueValue(), userContext);
 
-			if (dto.getUniqueKey() != null && !dto.getUniqueKey().equals("")) {
+			System.out.println(existsDTO != null && (dto.getId() != null || !existsDTO.getId().equals(dto.getId())));
 
-				T existsDTO = service.findByUniqueKey(dto.getUniqueKey(), dto.getUniqueValue(), userContext);
-				System.out.println(existsDTO != null && (dto.getId() != null || !existsDTO.getId().equals(dto.getId())));
-
-				if (existsDTO != null && (dto.getId() == 0 || existsDTO.getId() != dto.getId())) {
-					res.addMessage(dto.getLabel() + " already exists");
-					res.setSuccess(false);
-					return res;
-				}
+			if (existsDTO != null && (dto.getId() == null || existsDTO.getId() != dto.getId())) {
+				res.addMessage(dto.getLabel() + " already exists");
+				res.setSuccess(false);
+				return res;
 			}
 
-			long exId = dto.getId();
+			Long exId = dto.getId();
 
 			long id = service.save(dto, userContext);
-			if (id > 0 && exId == 0) {
+			System.out.println("value of id " + id);
+			System.out.println("value of exid " + exId);
+			System.out.println("value of dto.getid " + dto.getId());
+
+			if (id > 0 && exId == null) {
 				res.addMessage(dto.getTableName() + " added successfully");
 				res.addData(dto);
 			} else if (id == dto.getId()) {
@@ -136,7 +137,6 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 		return res;
 	}
 
-	
 	@PostMapping("deleteMany/{ids}")
 	public ORSResponse deleteMany(@PathVariable String[] ids, @RequestParam("pageNo") String pageNo,
 			@RequestBody F form) {
@@ -168,19 +168,18 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 		}
 		return res;
 	}
-	
-	
+
 	@RequestMapping(value = "search/{pageNo}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse search(@RequestBody(required = false) F form, @PathVariable(required = false) int pageNo) {
 		ORSResponse response = new ORSResponse();
 
 		try {
 			pageNo = (pageNo < 0) ? 0 : pageNo;
-			
+
 			System.out.println(form);
-			
+
 			T dto = form.getDto();
-			
+
 			List<T> list = service.search(dto, pageNo, pageSize, userContext);
 
 			List<T> nextList = service.search(dto, pageNo + 1, pageSize, userContext);

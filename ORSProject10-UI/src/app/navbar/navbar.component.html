@@ -3,6 +3,11 @@
     <a class="navbar-brand" [routerLink]="['/']">
         <img src="assets/img/rayslogo.jpg" height="42" alt="Logo">
     </a>
+    <select #locale (change)="changeLocale(locale.value)">
+        <option value="0">{{ 'LocaleSelect.Select' | translate }}</option>
+        <option value="en">{{ 'LocaleSelect.English' | translate }}</option>
+        <option value="hi">{{ 'LocaleSelect.Hindi' | translate }}</option>
+    </select>
 
     <!-- Toggler for mobile -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">

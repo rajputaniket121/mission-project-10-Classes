@@ -1,44 +1,64 @@
-<div align="center">
+<div class="p4 d-flex flex-column min-vh-100">
+    <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+        <div class="card grad-card shadow-sm w-100" style="max-width: 500px;">
+            <div class="card-body py-3">
+                <h5 class="text-center text-success fw-bold mb-3">
+                    Login
+                </h5>
 
-    <h1 align="center" style="margin-bottom: 5px; color: navy">Login</h1>
+                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                    *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                    *ngIf="form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-    <div style="height: 20px; margin-bottom: 10px; text-align: center;">
-        <h3 style="margin: 0; color: green;" *ngIf="!form.error && form.message">{{ form.message }}</h3>
-        <h3 style="margin: 0; color: red;" *ngIf="form.error && form.message">{{ form.message }}</h3>
+                <form>
+                    <div class="row">
+                        <!-- Login Id -->
+                        <div class="col-12 mb-2">
+                            <label class="form-label"><strong>Login Id</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-envelope text-muted"></i></span>
+                                <input type="text" class="form-control" name="loginId" [(ngModel)]="form.data.loginId"
+                                    placeholder="Enter Login ID">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.loginId}}</div>
+                        </div>
+                        <!-- Password -->
+                        <div class="col-12 mb-2">
+                            <label class="form-label"><strong>Password</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-key text-muted"></i></span>
+                                <input type="password" class="form-control" name="password"
+                                    [(ngModel)]="form.data.password" placeholder="Enter Password">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.password}}</div>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-2">
+                        <button type="button" class="btn btn-success btn-sm px-4" (click)="signIn()">Sign In</button>
+                        &nbsp;
+                        <button type="button" class="btn btn-secondary btn-sm px-4" (click)="signUp()">Sign Up</button>
+                    </div>
+                    <!-- Forgot Password Link -->
+                    <div class="text-center mt-2">
+                        <a [routerLink]="['/forgotpassword']" class="text-decoration-none"><b>Forget my
+                                password?</b></a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <table>
-        <tr>
-            <th align="left">Login Id<span style="color: red">*</span></th>
-            <td><input type="text" name="loginId" [(ngModel)]="form.data.loginId" placeholder="Enter Login ID"></td>
-            <td style="position: fixed; color: red;">{{form.inputerror.loginId}}</td>
-        </tr>
-
-        <tr>
-            <th align="left">Password<span style="color: red">*</span></th>
-            <td><input type="password" name="password" [(ngModel)]="form.data.password" placeholder="Enter Password">
-            </td>
-            <td style="position: fixed; color: red;">{{form.inputerror.password}}</td>
-        </tr>
-
-        <tr></tr>
-
-        <tr>
-            <th></th>
-            <td colspan="2">
-                <button (click)="signIn()">Sign In</button>&nbsp;
-                <button (click)="signUp()">Sign Up</button>
-            </td>
-        </tr>
-
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-
-        <tr>
-            <th></th>
-            <td><a [routerLink]="['/forgotpassword']"><b>Forget my password?</b></a>&nbsp;</td>
-        </tr>
-    </table>
 </div>
