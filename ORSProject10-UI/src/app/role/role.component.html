@@ -1,60 +1,61 @@
-<div align="center" class="container-fluid px-4 py-2">
-    <h1 *ngIf="!form.data.id" align="center" class="text-primary fw-bold mb-2"
-        style="margin-bottom: 5px; font-size: 1.8rem;">Add Role</h1>
-    <h1 *ngIf="form.data.id>0" align="center" class="text-primary fw-bold mb-2"
-        style="margin-bottom: 5px; font-size: 1.8rem;">Update Role</h1>
+<div class="d-flex flex-column min-vh-100">
+    <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+        <div class="card shadow-sm w-100" style="max-width: 800px;">
+            <div class="card-body py-3">
+                <h5 class="text-center text-success fw-bold mb-3">
+                    <span *ngIf="!form.data.id">{{ 'Add Role' }}</span>
+                    <span *ngIf="form.data.id>0">{{ 'Update Role' }}</span>
+                </h5>
 
-    <div style="height: auto; margin-bottom: 5px; text-align: center;">
-        <div class="text-success" style="margin: 0; font-size: 0.9rem;" *ngIf="!form.error && form.message">{{
-            form.message }}</div>
-        <div class="text-danger" style="margin: 0; font-size: 0.9rem;" *ngIf="form.error && form.message">{{
-            form.message }}</div>
-    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                    *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                    *ngIf="form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-    <div class="d-flex justify-content-center">
-        <div class="card shadow-sm border-0" style="max-width: 500px; width: 100%;">
-            <div class="card-body p-4">
-                <table class="table table-borderless mb-0" style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <th align="left" class="text-secondary fw-bold py-2" style="width: 30%;">Name<span
-                                    class="text-danger">*</span></th>
-                            <td align="center" class="py-2" style="width: 70%;">
-                                <input type="text" name="name" [(ngModel)]="form.data.name"
-                                    placeholder="Enter Role Name" class="form-control">
-                            </td>
-                            <td style="position: fixed; color: red;" class="text-danger small">{{form.inputerror.name}}
-                            </td>
-                        </tr>
+                <form>
+                    <div class="row">
+                        <!-- Name Field -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Name</strong> <span class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-tag text-muted"></i></span>
+                                <input type="text" class="form-control" name="name" [(ngModel)]="form.data.name"
+                                    placeholder="Enter Role Name">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.name}}</div>
+                        </div>
 
-                        <tr>
-                            <th align="left" class="text-secondary fw-bold py-2">
-                                Description<span class="text-danger">*</span>
-                            </th>
-                            <td align="center" class="py-2">
-                                <textarea style="width: 100%; resize: none;" name="description"
-                                    [(ngModel)]="form.data.description" rows="3" placeholder="Enter Short description"
-                                    class="form-control">
-                                </textarea>
-                            </td>
-                            <td style="position: fixed; color: red;" class="text-danger small">
-                                {{form.inputerror.description}}</td>
-                        </tr>
+                        <!-- Description Field -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Description</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-align-left text-muted"></i></span>
+                                <textarea class="form-control" name="description" [(ngModel)]="form.data.description"
+                                    rows="3" placeholder="Enter Short description" style="resize: none;"></textarea>
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.description}}</div>
+                        </div>
+                    </div>
 
-                        <tr>
-                            <td colspan="3" class="pt-3">
-                                <div class="d-flex gap-2 justify-content-center">
-                                    <button (click)="submit()" class="btn btn-primary px-4">
-                                        <i class="bi bi-check-circle me-1"></i> Save
-                                    </button>
-                                    <button (click)="forward('/rolelist')" class="btn btn-outline-secondary px-4">
-                                        <i class="bi bi-list me-1"></i> List
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-2">
+                        <button type="button" class="btn btn-success btn-sm px-4" (click)="submit()">Save</button>
+                        &nbsp;
+                        <button type="button" class="btn btn-secondary btn-sm px-4"
+                            (click)="forward('/rolelist')">List</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

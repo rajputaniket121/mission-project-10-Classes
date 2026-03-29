@@ -1,5 +1,5 @@
 <form>
-    <div class="p4 d-flex flex-column">
+    <div class="d-flex flex-column">
 
         <div *ngIf="!form.error && form.message" class="alert alert-danger alert-dismissible fade show">
             {{form.message}}
@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="form.list.rollNo && !form.success">
+                    <div *ngIf="form.list.rollNo && form.success">
                         <div class=" text-center mb-3">
                             <h3 class="text-warning">Rays Technologies, Indore</h3>
                         </div>

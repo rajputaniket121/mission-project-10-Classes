@@ -1,49 +1,76 @@
-<div align="center">
-    <h1 *ngIf="!form.data.id" align="center" style="margin-bottom: 5px; color: navy">Add Subject</h1>
-    <h1 *ngIf="form.data.id>0" align="center" style="margin-bottom: 5px; color: navy">Update Subject</h1>
+<div class="d-flex flex-column min-vh-100">
+    <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+        <div class="card grad-card shadow-sm w-100" style="max-width: 800px;">
+            <div class="card-body py-3">
+                <h5 class="text-center text-success fw-bold mb-3">
+                    <span *ngIf="!form.data.id">Add Subject</span>
+                    <span *ngIf="form.data.id>0">Update Subject</span>
+                </h5>
 
-    <div style="height: 20px; margin-bottom: 10px; text-align: center;">
-        <h3 style="margin: 0; color: green;" *ngIf="!form.error && form.message">{{ form.message }}</h3>
-        <h3 style="margin: 0; color: red;" *ngIf="form.error && form.message">{{ form.message }}</h3>
+                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                    *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                    *ngIf="form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form>
+                    <div class="row">
+                        <!-- Name -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Name</strong> <span class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-book text-muted"></i></span>
+                                <input type="text" class="form-control" name="name" [(ngModel)]="form.data.name"
+                                    placeholder="Enter Subject Name">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.name}}</div>
+                        </div>
+
+                        <!-- Course -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Course</strong> <span class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-graduation-cap text-muted"></i></span>
+                                <select class="form-select" name="courseId" [(ngModel)]="form.data.courseId">
+                                    <option value="undefined">------------Select------------</option>
+                                    <option *ngFor="let obj of form.preload.courseList" [value]="obj.key">{{obj.value}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.courseId}}</div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Description</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-align-left text-muted"></i></span>
+                                <textarea class="form-control" name="description" [(ngModel)]="form.data.description"
+                                    rows="3" placeholder="Enter Short description" style="resize: none;"></textarea>
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.description}}</div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-2">
+                        <button type="button" class="btn btn-success btn-sm px-4" (click)="submit()">Save</button>
+                        &nbsp;
+                        <button type="button" class="btn btn-secondary btn-sm px-4"
+                            (click)="forward('subjectlist')">List</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <table>
-        <tr>
-            <th align="left">Name<span style="color: red">*</span></th>
-            <td align="center"><input type="text" name="name" [(ngModel)]="form.data.name"
-                    placeholder="Enter Course Name"></td>
-            <td style="position: fixed; color: red;">{{form.inputerror.name}}</td>
-        </tr>
-
-        <tr>
-            <th align="left">Course<span style="color: red">*</span></th>
-            <td>
-                <select name="courseId" [(ngModel)]="form.data.courseId" style="width: 170px;">
-                    <option value="undefined">------------Select------------</option>
-                    <option *ngFor="let obj of form.preload.courseList" [value]="obj.key">{{obj.value}}</option>
-                </select>
-            </td>
-            <td style="position: fixed; color: red;">{{form.inputerror.courseId}}</td>
-        </tr>
-
-        <tr>
-            <th align="left">Description<span style="color: red">*</span></th>
-            <td align="center">
-                <textarea style="width: 165px; resize: none;" name="description" [(ngModel)]="form.data.description"
-                    rows="3" placeholder="Enter Short description">
-                </textarea>
-            </td>
-            <td style="position: fixed; color: red;">{{form.inputerror.description}}</td>
-        </tr>
-
-        <tr></tr>
-
-        <tr>
-            <th></th>
-            <td align="left" colspan="2">
-                <button (click)="submit()">save</button> &nbsp;
-                <button (click)="forward('subjectlist')">list</button>
-            </td>
-        </tr>
-    </table>
 </div>
