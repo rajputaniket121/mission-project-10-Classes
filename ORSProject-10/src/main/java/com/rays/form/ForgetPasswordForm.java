@@ -5,8 +5,8 @@ import javax.validation.constraints.NotEmpty;
 import com.rays.common.BaseForm;
 
 /**
- * Form for forgot password functionality.
- * Captures the login ID/email to send password reset instructions.
+ * Form for forgot password functionality. Captures the login ID/email to send
+ * password reset instructions.
  * 
  * @author Aniket Rajput
  */

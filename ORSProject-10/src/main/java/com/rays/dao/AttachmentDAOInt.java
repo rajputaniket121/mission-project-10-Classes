@@ -4,8 +4,8 @@ import com.rays.common.BaseDAOInt;
 import com.rays.dto.AttachmentDTO;
 
 /**
- * Data Access Object interface for Attachment entity.
- * Provides database operations for managing file attachments.
+ * Data Access Object interface for Attachment entity. Provides database
+ * operations for managing file attachments.
  * 
  * @author Aniket Rajput
  */

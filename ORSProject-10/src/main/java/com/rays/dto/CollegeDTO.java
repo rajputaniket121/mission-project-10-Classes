@@ -7,16 +7,16 @@ import javax.persistence.Table;
 import com.rays.common.BaseDTO;
 
 /**
- * Data Transfer Object for College entity.
- * Contains information about educational institutions including name, address,
- * state, city, and contact details.
+ * Data Transfer Object for College entity. Contains information about
+ * educational institutions including name, address, state, city, and contact
+ * details.
  * 
  * @author Aniket Rajput
  */
 @Table(name = "ST_COLLEGE")
 @Entity
 public class CollegeDTO extends BaseDTO {
-	
+
 	@Column(name = "NAME", length = 50)
 	private String name;
 
@@ -31,7 +31,7 @@ public class CollegeDTO extends BaseDTO {
 
 	@Column(name = "PHONE_NO", length = 15)
 	private String phoneNo;
-	
+
 	/**
 	 * Gets the college name.
 	 * 

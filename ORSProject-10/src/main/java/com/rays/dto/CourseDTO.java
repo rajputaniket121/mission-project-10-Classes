@@ -7,8 +7,8 @@ import javax.persistence.Table;
 import com.rays.common.BaseDTO;
 
 /**
- * Data Transfer Object for Course entity.
- * Contains information about academic courses including name, duration, and description.
+ * Data Transfer Object for Course entity. Contains information about academic
+ * courses including name, duration, and description.
  * 
  * @author Aniket Rajput
  */
@@ -108,7 +108,7 @@ public class CourseDTO extends BaseDTO {
 	public String getLabel() {
 		return "Course Name";
 	}
-	
+
 	/**
 	 * Gets the table name for this DTO.
 	 * 

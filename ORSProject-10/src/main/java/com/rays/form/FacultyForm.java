@@ -11,9 +11,9 @@ import com.rays.common.BaseForm;
 import com.rays.dto.FacultyDTO;
 
 /**
- * Form for Faculty entity.
- * Handles validation and DTO conversion for faculty data including
- * personal details, qualifications, and associated college/course/subject.
+ * Form for Faculty entity. Handles validation and DTO conversion for faculty
+ * data including personal details, qualifications, and associated
+ * college/course/subject.
  * 
  * @author Aniket Rajput
  */

@@ -22,9 +22,9 @@ import com.rays.dto.FacultyDTO;
 import com.rays.dto.SubjectDTO;
 
 /**
- * Implementation of FacultyDAOInt interface.
- * Provides database operations for managing faculty information
- * with dynamic search criteria and name population from related entities.
+ * Implementation of FacultyDAOInt interface. Provides database operations for
+ * managing faculty information with dynamic search criteria and name population
+ * from related entities.
  * 
  * @author Aniket Rajput
  */
@@ -41,10 +41,10 @@ public class FacultyDAOImpl extends BaseDAOImpl<FacultyDTO> implements FacultyDA
 	private SubjectDAOInt subjectDao;
 
 	/**
-	 * Populates the faculty DTO with college, course, and subject names
-	 * based on their respective IDs.
+	 * Populates the faculty DTO with college, course, and subject names based on
+	 * their respective IDs.
 	 * 
-	 * @param dto the FacultyDTO to populate
+	 * @param dto         the FacultyDTO to populate
 	 * @param userContext the user context containing current user information
 	 */
 	@Override
@@ -65,20 +65,20 @@ public class FacultyDAOImpl extends BaseDAOImpl<FacultyDTO> implements FacultyDA
 	}
 
 	/**
-	 * Builds WHERE clause predicates for faculty search criteria.
-	 * Supports searching by first name, email, college name, course name, and subject name.
+	 * Builds WHERE clause predicates for faculty search criteria. Supports
+	 * searching by first name, email, college name, course name, and subject name.
 	 * 
-	 * @param dto the FacultyDTO containing search criteria
+	 * @param dto     the FacultyDTO containing search criteria
 	 * @param builder the CriteriaBuilder instance
-	 * @param qRoot the Root instance for the entity
+	 * @param qRoot   the Root instance for the entity
 	 * @return list of Predicates for the WHERE clause
 	 */
 	@Override
 	protected List<Predicate> getWhereClause(FacultyDTO dto, CriteriaBuilder builder, Root<FacultyDTO> qRoot) {
 		List<Predicate> whereCondition = new ArrayList<Predicate>();
 
-		if(dto!=null) {
-			
+		if (dto != null) {
+
 			if (!isEmptyString(dto.getFirstName())) {
 
 				whereCondition.add(builder.like(qRoot.get("firstName"), dto.getFirstName() + "%"));
@@ -103,7 +103,7 @@ public class FacultyDAOImpl extends BaseDAOImpl<FacultyDTO> implements FacultyDA
 
 				whereCondition.add(builder.like(qRoot.get("subjectName"), dto.getSubjectName() + "%"));
 			}
-			
+
 		}
 
 		return whereCondition;

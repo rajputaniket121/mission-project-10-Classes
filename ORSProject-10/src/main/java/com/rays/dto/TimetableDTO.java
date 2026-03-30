@@ -9,9 +9,8 @@ import javax.persistence.Table;
 import com.rays.common.BaseDTO;
 
 /**
- * Data Transfer Object for Timetable entity.
- * Contains scheduling information for exams including course, subject,
- * exam date, time, and semester details.
+ * Data Transfer Object for Timetable entity. Contains scheduling information
+ * for exams including course, subject, exam date, time, and semester details.
  * 
  * @author Aniket Rajput
  */

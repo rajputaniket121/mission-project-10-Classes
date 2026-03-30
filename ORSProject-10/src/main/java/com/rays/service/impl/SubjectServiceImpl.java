@@ -9,13 +9,13 @@ import com.rays.dto.SubjectDTO;
 import com.rays.service.SubjectServiceInt;
 
 /**
- * Implementation of SubjectServiceInt interface.
- * Provides business logic operations for managing subject information.
+ * Implementation of SubjectServiceInt interface. Provides business logic
+ * operations for managing subject information.
  * 
  * @author Aniket Rajput
  */
 @Service
 @Transactional
-public class SubjectServiceImpl extends BaseServiceImpl<SubjectDTO,SubjectDAOInt> implements SubjectServiceInt {
+public class SubjectServiceImpl extends BaseServiceImpl<SubjectDTO, SubjectDAOInt> implements SubjectServiceInt {
 
 }

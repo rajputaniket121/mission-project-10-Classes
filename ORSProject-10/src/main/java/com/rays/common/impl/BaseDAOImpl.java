@@ -31,9 +31,9 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	/**
 	 * Builds the WHERE clause predicates for search criteria.
 	 * 
-	 * @param dto the DTO containing search criteria
+	 * @param dto     the DTO containing search criteria
 	 * @param builder the CriteriaBuilder instance
-	 * @param qRoot the Root instance for the entity
+	 * @param qRoot   the Root instance for the entity
 	 * @return list of Predicates for the WHERE clause
 	 */
 	protected abstract List<Predicate> getWhereClause(T dto, CriteriaBuilder builder, Root<T> qRoot);
@@ -44,12 +44,12 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	 * @return the Class object of the DTO
 	 */
 	public abstract Class<T> getDTOClass();
-	
+
 	/**
-	 * Populates additional fields in the DTO before persistence.
-	 * Override this method to set custom values.
+	 * Populates additional fields in the DTO before persistence. Override this
+	 * method to set custom values.
 	 * 
-	 * @param dto the DTO to populate
+	 * @param dto         the DTO to populate
 	 * @param userContext the user context
 	 */
 	public void populate(T dto, UserContext userContext) {
@@ -58,7 +58,7 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	/**
 	 * Adds a new entity to the database.
 	 * 
-	 * @param dto the DTO to be added
+	 * @param dto         the DTO to be added
 	 * @param userContext the user context containing current user information
 	 * @return the generated ID of the added entity
 	 */
@@ -81,7 +81,7 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	/**
 	 * Updates an existing entity in the database.
 	 * 
-	 * @param dto the DTO with updated values
+	 * @param dto         the DTO with updated values
 	 * @param userContext the user context containing current user information
 	 */
 	@Override
@@ -98,20 +98,20 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	/**
 	 * Deletes an entity from the database.
 	 * 
-	 * @param dto the DTO to be deleted
+	 * @param dto         the DTO to be deleted
 	 * @param userContext the user context containing current user information
 	 */
 	@Override
 	public void delete(T dto, UserContext userContext) {
 
 		entityManager.remove(dto);
-		
+
 	}
 
 	/**
 	 * Finds an entity by its primary key ID.
 	 * 
-	 * @param id the primary key ID to search for
+	 * @param id          the primary key ID to search for
 	 * @param userContext the user context containing current user information
 	 * @return the found DTO, or null if not found
 	 */
@@ -126,14 +126,14 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	/**
 	 * Finds an entity by a unique key attribute.
 	 * 
-	 * @param attribute the attribute name to search by
-	 * @param value the attribute value to search for
+	 * @param attribute   the attribute name to search by
+	 * @param value       the attribute value to search for
 	 * @param userContext the user context containing current user information
 	 * @return the found DTO, or null if not found
 	 */
 	@Override
 	public T findByUniqueKey(String attribute, Object value, UserContext userContext) {
-		
+
 		Class<T> dtoClass = getDTOClass();
 
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -162,35 +162,35 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	/**
 	 * Creates a TypedQuery for searching based on the DTO criteria.
 	 * 
-	 * @param dto the DTO containing search criteria
+	 * @param dto         the DTO containing search criteria
 	 * @param userContext the user context
 	 * @return TypedQuery for executing the search
 	 */
 	protected TypedQuery<T> createCriteria(T dto, UserContext userContext) {
-		
+
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getDTOClass());
-		
+
 		Root<T> qRoot = criteriaQuery.from(getDTOClass());
-		
+
 		criteriaQuery.select(qRoot);
-		
+
 		List<Predicate> whereClause = getWhereClause(dto, criteriaBuilder, qRoot);
-		
-		for(Predicate condition : whereClause) {
+
+		for (Predicate condition : whereClause) {
 			criteriaQuery.where(condition);
 		}
-		
-		TypedQuery<T> typedQuery =  entityManager.createQuery(criteriaQuery);
-		
+
+		TypedQuery<T> typedQuery = entityManager.createQuery(criteriaQuery);
+
 		return typedQuery;
 	}
 
 	/**
 	 * Searches for entities matching the given DTO criteria.
 	 * 
-	 * @param dto the DTO containing search criteria
+	 * @param dto         the DTO containing search criteria
 	 * @param userContext the user context containing current user information
 	 * @return list of all DTOs matching the search criteria
 	 */
@@ -202,27 +202,27 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	/**
 	 * Searches for entities matching the given DTO criteria with pagination.
 	 * 
-	 * @param dto the DTO containing search criteria
-	 * @param pageNo the page number to retrieve (zero-based)
-	 * @param pageSize the number of records per page
+	 * @param dto         the DTO containing search criteria
+	 * @param pageNo      the page number to retrieve (zero-based)
+	 * @param pageSize    the number of records per page
 	 * @param userContext the user context containing current user information
 	 * @return list of DTOs matching the search criteria for the specified page
 	 */
 	@Override
 	public List<T> search(T dto, int pageNo, int pageSize, UserContext userContext) {
-		
-		TypedQuery<T> typedQuery =  createCriteria(dto, userContext);
-		
-		if(pageSize>0) {
+
+		TypedQuery<T> typedQuery = createCriteria(dto, userContext);
+
+		if (pageSize > 0) {
 			typedQuery.setFirstResult(pageNo * pageSize);
 			typedQuery.setMaxResults(pageSize);
 		}
-		
+
 		List<T> list = typedQuery.getResultList();
 
 		return list;
 	}
-	
+
 	/**
 	 * Checks if a string is null or empty.
 	 * 

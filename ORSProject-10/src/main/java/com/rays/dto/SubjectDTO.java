@@ -7,8 +7,8 @@ import javax.persistence.Table;
 import com.rays.common.BaseDTO;
 
 /**
- * Data Transfer Object for Subject entity.
- * Contains information about academic subjects and their associated courses.
+ * Data Transfer Object for Subject entity. Contains information about academic
+ * subjects and their associated courses.
  * 
  * @author Aniket Rajput
  */
@@ -129,7 +129,7 @@ public class SubjectDTO extends BaseDTO {
 	public String getLabel() {
 		return "Subject Name";
 	}
-	
+
 	/**
 	 * Gets the table name for this DTO.
 	 * 

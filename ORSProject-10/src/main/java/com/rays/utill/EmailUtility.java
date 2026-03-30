@@ -14,15 +14,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * EmailUtility provides email services for sending notifications.
- * Configures email server connection and handles message delivery
- * with support for HTML and plain text formats.
+ * EmailUtility provides email services for sending notifications. Configures
+ * email server connection and handles message delivery with support for HTML
+ * and plain text formats.
  * 
  * @author Aniket Rajput
  */
 @Component
 public class EmailUtility {
-	
+
 	/**
 	 * Create Resource Bundle to read properties file
 	 */
@@ -52,7 +52,7 @@ public class EmailUtility {
 	 * Administrator email's password
 	 */
 	private static final String emailPassword = rb.getString("email.pwd");
-	
+
 	/**
 	 * Email server properties
 	 */
@@ -77,14 +77,14 @@ public class EmailUtility {
 	}
 
 	/**
-	 * Sends an email message using the configured SMTP server.
-	 * Supports multiple recipients (TO, CC, BCC) and both HTML and text formats.
+	 * Sends an email message using the configured SMTP server. Supports multiple
+	 * recipients (TO, CC, BCC) and both HTML and text formats.
 	 *
 	 * @param emailMessageDTO the email message object containing all email details
 	 */
 	public static void sendMail(EmailMessage emailMessageDTO) {
-		
-		System.out.println(SMTP_HOST_NAME+"  "+SMTP_PORT);
+
+		System.out.println(SMTP_HOST_NAME + "  " + SMTP_PORT);
 
 		try {
 

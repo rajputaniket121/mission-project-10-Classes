@@ -6,8 +6,8 @@ import javax.validation.constraints.Size;
 import com.rays.common.BaseForm;
 
 /**
- * Form for handling password change requests.
- * Contains old password, new password, and login ID fields with validation.
+ * Form for handling password change requests. Contains old password, new
+ * password, and login ID fields with validation.
  * 
  * @author Aniket Rajput
  */

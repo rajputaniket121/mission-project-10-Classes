@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Standard response wrapper for all REST API responses.
- * Contains success status and a result map with various data types.
+ * Standard response wrapper for all REST API responses. Contains success status
+ * and a result map with various data types.
  * 
  * @author Aniket Rajput
  */
@@ -99,7 +99,7 @@ public class ORSResponse {
 	/**
 	 * Adds a custom key-value pair to the result map.
 	 * 
-	 * @param key the key for the value
+	 * @param key   the key for the value
 	 * @param value the value to add
 	 */
 	public void addResult(String key, Object value) {

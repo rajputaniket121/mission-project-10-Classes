@@ -5,8 +5,8 @@ package com.rays.exception;
  * 
  * @author Aniket Rajput
  */
-public class RecordNotFoundException extends RuntimeException{
-	
+public class RecordNotFoundException extends RuntimeException {
+
 	/**
 	 * Constructs a new RecordNotFoundException with the specified message.
 	 * 

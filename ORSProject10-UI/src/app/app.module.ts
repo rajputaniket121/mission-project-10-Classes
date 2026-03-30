@@ -42,7 +42,7 @@ import { MarksheetmeritListComponent } from './marksheet/marksheetmerit-list.com
 import { CommonModule } from '@angular/common';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({

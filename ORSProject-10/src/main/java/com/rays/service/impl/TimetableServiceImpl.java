@@ -9,13 +9,14 @@ import com.rays.dto.TimetableDTO;
 import com.rays.service.TimetableServiceInt;
 
 /**
- * Implementation of TimetableServiceInt interface.
- * Provides business logic operations for managing exam schedules and timetables.
+ * Implementation of TimetableServiceInt interface. Provides business logic
+ * operations for managing exam schedules and timetables.
  * 
  * @author Aniket Rajput
  */
 @Service
 @Transactional
-public class TimetableServiceImpl extends BaseServiceImpl<TimetableDTO,TimetableDAOInt> implements TimetableServiceInt {
+public class TimetableServiceImpl extends BaseServiceImpl<TimetableDTO, TimetableDAOInt>
+		implements TimetableServiceInt {
 
 }

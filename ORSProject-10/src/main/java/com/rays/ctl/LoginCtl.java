@@ -24,26 +24,27 @@ import com.rays.form.UserRegistrationForm;
 import com.rays.service.UserServiceInt;
 
 /**
- * Authentication Controller for handling login, signup, logout, and password operations.
- * Provides REST endpoints for user authentication and registration.
+ * Authentication Controller for handling login, signup, logout, and password
+ * operations. Provides REST endpoints for user authentication and registration.
  * 
  * @author Aniket Rajput
  */
 @RestController
 @RequestMapping(value = "Auth")
-public class LoginCtl extends BaseCtl<UserDTO ,UserForm , UserServiceInt> {
-	
+public class LoginCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
+
 	@Autowired
 	private JWTUtil jwtUtil;
 
 	/**
 	 * Authenticates a user with login credentials.
 	 * 
-	 * @param form the login form containing loginId and password
+	 * @param form          the login form containing loginId and password
 	 * @param bindingResult validation result
-	 * @param session the HTTP session
-	 * @param request the HTTP request
-	 * @return ORSResponse with user details and JWT token on success, or error message on failure
+	 * @param session       the HTTP session
+	 * @param request       the HTTP request
+	 * @return ORSResponse with user details and JWT token on success, or error
+	 *         message on failure
 	 * @throws Exception if token generation fails
 	 */
 	@PostMapping("login")
@@ -81,7 +82,7 @@ public class LoginCtl extends BaseCtl<UserDTO ,UserForm , UserServiceInt> {
 	/**
 	 * Registers a new user account.
 	 * 
-	 * @param form the registration form containing user details
+	 * @param form          the registration form containing user details
 	 * @param bindingResult validation result
 	 * @return ORSResponse with success message or error if loginId already exists
 	 */
@@ -141,11 +142,13 @@ public class LoginCtl extends BaseCtl<UserDTO ,UserForm , UserServiceInt> {
 	}
 
 	/**
-	 * Handles forgot password functionality by sending password to registered email.
+	 * Handles forgot password functionality by sending password to registered
+	 * email.
 	 * 
-	 * @param form the forget password form containing loginId
+	 * @param form          the forget password form containing loginId
 	 * @param bindingResult validation result
-	 * @return ORSResponse with success message if loginId exists, or error if not found
+	 * @return ORSResponse with success message if loginId exists, or error if not
+	 *         found
 	 */
 	@PostMapping("forgetPassword")
 	public ORSResponse forgetPassword(@RequestBody @Valid ForgetPasswordForm form, BindingResult bindingResult) {

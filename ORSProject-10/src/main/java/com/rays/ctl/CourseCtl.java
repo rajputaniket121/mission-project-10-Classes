@@ -9,8 +9,8 @@ import com.rays.form.CourseForm;
 import com.rays.service.CourseServiceInt;
 
 /**
- * Controller for managing Course entities.
- * Provides REST endpoints for CRUD operations on Course.
+ * Controller for managing Course entities. Provides REST endpoints for CRUD
+ * operations on Course.
  * 
  * @author Aniket Rajput
  */

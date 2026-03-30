@@ -4,8 +4,8 @@ import com.rays.common.BaseDAOInt;
 import com.rays.dto.TimetableDTO;
 
 /**
- * Data Access Object interface for Timetable entity.
- * Provides database operations for managing timetable information.
+ * Data Access Object interface for Timetable entity. Provides database
+ * operations for managing timetable information.
  * 
  * @author Aniket Rajput
  */

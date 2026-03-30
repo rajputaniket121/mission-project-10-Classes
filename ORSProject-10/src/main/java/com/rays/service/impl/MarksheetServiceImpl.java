@@ -12,16 +12,17 @@ import com.rays.dto.MarksheetDTO;
 import com.rays.service.MarksheetServiceInt;
 
 /**
- * Implementation of MarksheetServiceInt interface.
- * Provides business logic operations for managing marksheet information,
- * including merit list retrieval and roll number search.
+ * Implementation of MarksheetServiceInt interface. Provides business logic
+ * operations for managing marksheet information, including merit list retrieval
+ * and roll number search.
  * 
  * @author Aniket Rajput
  */
 @Service
 @Transactional
-public class MarksheetServiceImpl extends BaseServiceImpl<MarksheetDTO,MarksheetDAOInt> implements MarksheetServiceInt {
-	
+public class MarksheetServiceImpl extends BaseServiceImpl<MarksheetDTO, MarksheetDAOInt>
+		implements MarksheetServiceInt {
+
 	/**
 	 * Retrieves the merit list of top performing students.
 	 * 
@@ -29,14 +30,14 @@ public class MarksheetServiceImpl extends BaseServiceImpl<MarksheetDTO,Marksheet
 	 * @return list of top 10 marksheets ordered by total marks
 	 */
 	@Transactional(readOnly = true)
-	public List<MarksheetDTO> getMeritList(UserContext userContext){
+	public List<MarksheetDTO> getMeritList(UserContext userContext) {
 		return dao.getMeritList(userContext);
 	}
-	
+
 	/**
 	 * Finds a marksheet by roll number.
 	 * 
-	 * @param rollNo the roll number to search for
+	 * @param rollNo  the roll number to search for
 	 * @param context the user context
 	 * @return the marksheet DTO if found, null otherwise
 	 */

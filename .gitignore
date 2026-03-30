@@ -1,6 +1,8 @@
 .metadata/
 ./ORSProject-10/target
+./ORSProject-10/doc
 ./ORSProject-10-FC/target
+./ORSProject-10-FC/doc
 
 
 ./ORSProject10-UI/.angular

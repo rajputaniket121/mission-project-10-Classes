@@ -13,15 +13,15 @@ import com.rays.form.RoleForm;
 import com.rays.service.RoleServiceInt;
 
 /**
- * Controller for managing Role entities.
- * Provides REST endpoints for CRUD operations and preload data.
+ * Controller for managing Role entities. Provides REST endpoints for CRUD
+ * operations and preload data.
  * 
  * @author Aniket Rajput
  */
 @RestController
 @RequestMapping(value = "Role")
 public class RoleCtl extends BaseCtl<RoleDTO, RoleForm, RoleServiceInt> {
-	
+
 	/**
 	 * Preloads role list for dropdown in forms.
 	 * 
@@ -32,8 +32,8 @@ public class RoleCtl extends BaseCtl<RoleDTO, RoleForm, RoleServiceInt> {
 		ORSResponse orsResponse = new ORSResponse(true);
 		try {
 			List<DropdownList> roleList = service.search(null, userContext);
-			orsResponse.addResult("roleList",roleList);
-		}catch (Exception e) {
+			orsResponse.addResult("roleList", roleList);
+		} catch (Exception e) {
 			orsResponse.setSuccess(false);
 			orsResponse.addMessage(e.getMessage());
 			e.printStackTrace();

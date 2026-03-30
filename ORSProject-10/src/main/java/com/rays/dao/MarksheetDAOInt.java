@@ -7,14 +7,14 @@ import com.rays.common.UserContext;
 import com.rays.dto.MarksheetDTO;
 
 /**
- * Data Access Object interface for Marksheet entity.
- * Provides database operations for managing marksheet information,
- * including merit list retrieval.
+ * Data Access Object interface for Marksheet entity. Provides database
+ * operations for managing marksheet information, including merit list
+ * retrieval.
  * 
  * @author Aniket Rajput
  */
 public interface MarksheetDAOInt extends BaseDAOInt<MarksheetDTO> {
-	
+
 	/**
 	 * Retrieves the merit list of top performing students.
 	 * 

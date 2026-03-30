@@ -4,8 +4,8 @@ import com.rays.common.BaseDAOInt;
 import com.rays.dto.FacultyDTO;
 
 /**
- * Data Access Object interface for Faculty entity.
- * Provides database operations for managing faculty information.
+ * Data Access Object interface for Faculty entity. Provides database operations
+ * for managing faculty information.
  * 
  * @author Aniket Rajput
  */

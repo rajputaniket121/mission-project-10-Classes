@@ -21,15 +21,15 @@ import com.rays.service.FacultyServiceInt;
 import com.rays.service.SubjectServiceInt;
 
 /**
- * Controller for managing Faculty entities.
- * Provides REST endpoints for CRUD operations on Faculty and preload data.
+ * Controller for managing Faculty entities. Provides REST endpoints for CRUD
+ * operations on Faculty and preload data.
  * 
  * @author Aniket Rajput
  */
 @RestController
 @RequestMapping(value = "Faculty")
 public class FacultyCtl extends BaseCtl<FacultyDTO, FacultyForm, FacultyServiceInt> {
-	
+
 	@Autowired
 	private CourseServiceInt courseService;
 

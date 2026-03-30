@@ -6,13 +6,13 @@ import com.rays.common.BaseForm;
 import com.rays.dto.CourseDTO;
 
 /**
- * Form for Course entity.
- * Handles validation and DTO conversion for course data.
+ * Form for Course entity. Handles validation and DTO conversion for course
+ * data.
  * 
  * @author Aniket Rajput
  */
 public class CourseForm extends BaseForm<CourseDTO> {
-	
+
 	@NotEmpty(message = "Name is required")
 	private String name;
 

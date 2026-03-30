@@ -10,58 +10,58 @@ import javax.persistence.Table;
 import com.rays.common.BaseDTO;
 
 /**
- * Data Transfer Object for User entity.
- * Contains user account information including login credentials,
- * personal details, role assignments, and account status.
+ * Data Transfer Object for User entity. Contains user account information
+ * including login credentials, personal details, role assignments, and account
+ * status.
  * 
  * @author Aniket Rajput
  */
 @Entity
 @Table(name = "ST_USER")
 public class UserDTO extends BaseDTO {
-	
+
 	@Column(name = "FIRST_NAME", length = 50)
 	private String firstName;
-	
+
 	@Column(name = "LAST_NAME", length = 50)
 	private String lastName;
-	
+
 	@Column(name = "LOGIN_ID", length = 50)
 	private String loginId;
-	
+
 	@Column(name = "PASSWORD", length = 50)
 	private String password;
-	
+
 	@Column(name = "ROLE_ID")
 	private Long roleId;
-	
+
 	@Column(name = "ROLE_NAME", length = 50)
 	private String roleName = null;
-	
+
 	@Column(name = "DOB", length = 50)
 	private Date dob;
-	
+
 	@Column(name = "GENDER", length = 50)
 	private String gender;
-	
+
 	@Column(name = "PHONE", length = 50)
 	private String phone;
-	
+
 	@Column(name = "ALTERNATE_MOBILE", length = 50)
 	private String alternateMobile;
-	
+
 	@Column(name = "STATUS", length = 50)
 	private String status;
-	
+
 	@Column(name = "LAST_LOGIN")
 	private Timestamp lastLogin;
-	
+
 	@Column(name = "UNSUCCESSFULL_LOGIN_ATTEMPT")
-	private Integer unsuccessfullLoginAttempt = 0 ;
-	
+	private Integer unsuccessfullLoginAttempt = 0;
+
 	@Column(name = "IMAGE_ID")
 	private Long imageId;
-	
+
 	/**
 	 * Gets the display value for dropdown lists.
 	 * 

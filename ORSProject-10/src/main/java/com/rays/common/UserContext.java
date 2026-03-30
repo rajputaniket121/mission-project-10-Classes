@@ -3,27 +3,27 @@ package com.rays.common;
 import com.rays.dto.UserDTO;
 
 /**
- * User context holder containing information about the currently authenticated user.
- * Used for audit tracking and authorization checks.
+ * User context holder containing information about the currently authenticated
+ * user. Used for audit tracking and authorization checks.
  * 
  * @author Aniket Rajput
  */
 public class UserContext {
-	
+
 	private Long userId = 0l;
 	private String loginId = "root";
 	private String name = null;
 	private Long roleId = 0L;
 	private String roleName = "root";
-	
+
 	private UserDTO userDto = null;
-	
+
 	/**
 	 * Default constructor.
 	 */
 	public UserContext() {
 	}
-	
+
 	/**
 	 * Constructor that populates user context from a UserDTO.
 	 * 
@@ -33,7 +33,7 @@ public class UserContext {
 		this.userDto = dto;
 		this.userId = dto.getId();
 		this.loginId = dto.getLoginId();
-		this.name = dto.getFirstName()+" "+dto.getLastName();
+		this.name = dto.getFirstName() + " " + dto.getLastName();
 		this.roleId = dto.getRoleId();
 		this.roleName = dto.getRoleName();
 	}

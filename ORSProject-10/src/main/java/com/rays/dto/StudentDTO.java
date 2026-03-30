@@ -9,9 +9,9 @@ import javax.persistence.Table;
 import com.rays.common.BaseDTO;
 
 /**
- * Data Transfer Object for Student entity.
- * Contains personal and academic information about students including
- * enrollment number, name, contact details, and associated college.
+ * Data Transfer Object for Student entity. Contains personal and academic
+ * information about students including enrollment number, name, contact
+ * details, and associated college.
  * 
  * @author Aniket Rajput
  */
@@ -216,7 +216,7 @@ public class StudentDTO extends BaseDTO {
 	public String getLabel() {
 		return "Enroll No";
 	}
-	
+
 	/**
 	 * Gets the table name for this DTO.
 	 * 

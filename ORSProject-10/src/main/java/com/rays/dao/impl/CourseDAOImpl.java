@@ -14,9 +14,8 @@ import com.rays.dao.CourseDAOInt;
 import com.rays.dto.CourseDTO;
 
 /**
- * Implementation of CourseDAOInt interface.
- * Provides database operations for managing course information
- * with dynamic search criteria.
+ * Implementation of CourseDAOInt interface. Provides database operations for
+ * managing course information with dynamic search criteria.
  * 
  * @author Aniket Rajput
  */
@@ -24,21 +23,21 @@ import com.rays.dto.CourseDTO;
 public class CourseDAOImpl extends BaseDAOImpl<CourseDTO> implements CourseDAOInt {
 
 	/**
-	 * Builds WHERE clause predicates for course search criteria.
-	 * Supports searching by name, description, and duration.
+	 * Builds WHERE clause predicates for course search criteria. Supports searching
+	 * by name, description, and duration.
 	 * 
-	 * @param dto the CourseDTO containing search criteria
+	 * @param dto     the CourseDTO containing search criteria
 	 * @param builder the CriteriaBuilder instance
-	 * @param qRoot the Root instance for the entity
+	 * @param qRoot   the Root instance for the entity
 	 * @return list of Predicates for the WHERE clause
 	 */
 	@Override
 	protected List<Predicate> getWhereClause(CourseDTO dto, CriteriaBuilder builder, Root<CourseDTO> qRoot) {
-		
+
 		List<Predicate> whereCondition = new ArrayList<Predicate>();
 
-		if(dto!=null) {
-			
+		if (dto != null) {
+
 			if (!isEmptyString(dto.getName())) {
 
 				whereCondition.add(builder.like(qRoot.get("name"), dto.getName() + "%"));
@@ -53,7 +52,7 @@ public class CourseDAOImpl extends BaseDAOImpl<CourseDTO> implements CourseDAOIn
 
 				whereCondition.add(builder.like(qRoot.get("duration"), dto.getDuration() + "%"));
 			}
-			
+
 		}
 
 		return whereCondition;

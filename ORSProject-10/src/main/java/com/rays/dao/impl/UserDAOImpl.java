@@ -19,10 +19,9 @@ import com.rays.dto.UserDTO;
 import com.rays.service.AttachmentServiceInt;
 
 /**
- * Implementation of UserDAOInt interface.
- * Provides database operations for managing user information
- * with dynamic search criteria, role name population, and cascade delete
- * for associated profile pictures.
+ * Implementation of UserDAOInt interface. Provides database operations for
+ * managing user information with dynamic search criteria, role name population,
+ * and cascade delete for associated profile pictures.
  * 
  * @author Aniket Rajput
  */
@@ -31,17 +30,17 @@ public class UserDAOImpl extends BaseDAOImpl<UserDTO> implements UserDAOInt {
 
 	@Autowired
 	private RoleDAOInt roleDao;
-	
+
 	@Autowired
 	private AttachmentServiceInt attachmentServiceInt;
 
 	/**
-	 * Builds WHERE clause predicates for user search criteria.
-	 * Supports searching by first name, login ID, role ID, date of birth, and status.
+	 * Builds WHERE clause predicates for user search criteria. Supports searching
+	 * by first name, login ID, role ID, date of birth, and status.
 	 * 
-	 * @param dto the UserDTO containing search criteria
+	 * @param dto     the UserDTO containing search criteria
 	 * @param builder the CriteriaBuilder instance
-	 * @param qRoot the Root instance for the entity
+	 * @param qRoot   the Root instance for the entity
 	 * @return list of Predicates for the WHERE clause
 	 */
 	@Override
@@ -80,10 +79,10 @@ public class UserDAOImpl extends BaseDAOImpl<UserDTO> implements UserDAOInt {
 	}
 
 	/**
-	 * Populates the user DTO with role name and preserves existing
-	 * last login and image ID information.
+	 * Populates the user DTO with role name and preserves existing last login and
+	 * image ID information.
 	 * 
-	 * @param dto the UserDTO to populate
+	 * @param dto         the UserDTO to populate
 	 * @param userContext the user context containing current user information
 	 */
 	@Override
@@ -92,21 +91,21 @@ public class UserDAOImpl extends BaseDAOImpl<UserDTO> implements UserDAOInt {
 			RoleDTO roleDto = roleDao.findByPk(dto.getRoleId(), userContext);
 			dto.setRoleName(roleDto.getName());
 		}
-		if( dto.getId() != null && dto.getId()>0) {
+		if (dto.getId() != null && dto.getId() > 0) {
 			UserDTO userData = findByPk(dto.getId(), userContext);
 			dto.setLastLogin(userData.getLastLogin());
 		}
 		if (dto.getId() != null && dto.getId() > 0) {
-			UserDTO userData = findByPk(dto.getId(),userContext);
+			UserDTO userData = findByPk(dto.getId(), userContext);
 			dto.setImageId(userData.getImageId());
 		}
 	}
-	
+
 	/**
-	 * Deletes a user and also deletes their associated profile picture
-	 * to maintain data integrity.
+	 * Deletes a user and also deletes their associated profile picture to maintain
+	 * data integrity.
 	 * 
-	 * @param dto the UserDTO to delete
+	 * @param dto         the UserDTO to delete
 	 * @param userContext the user context containing current user information
 	 */
 	@Override

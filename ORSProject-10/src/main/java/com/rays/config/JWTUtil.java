@@ -33,9 +33,9 @@ public class JWTUtil {
 	/**
 	 * Generates a JWT token for the given user details.
 	 * 
-	 * @param userId the user ID
+	 * @param userId  the user ID
 	 * @param loginId the login ID (subject)
-	 * @param role the user role
+	 * @param role    the user role
 	 * @return the generated JWT token as a string
 	 * @throws Exception if token generation fails
 	 */
@@ -66,7 +66,7 @@ public class JWTUtil {
 	/**
 	 * Validates the JWT token against expected login ID and signature.
 	 * 
-	 * @param token the JWT token to validate
+	 * @param token           the JWT token to validate
 	 * @param expectedLoginId the expected login ID from the subject claim
 	 * @return true if token is valid
 	 * @throws Exception if validation fails
@@ -140,7 +140,7 @@ public class JWTUtil {
 	/**
 	 * Extracts a field value from JSON payload.
 	 * 
-	 * @param json the JSON string
+	 * @param json  the JSON string
 	 * @param field the field name to extract
 	 * @return the field value as a string
 	 */
@@ -157,7 +157,7 @@ public class JWTUtil {
 	 * Creates HMAC-SHA256 signature for the data using the key.
 	 * 
 	 * @param data the data to sign
-	 * @param key the secret key
+	 * @param key  the secret key
 	 * @return the base64 URL encoded signature
 	 * @throws Exception if signing fails
 	 */

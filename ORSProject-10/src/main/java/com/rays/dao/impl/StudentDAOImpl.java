@@ -18,9 +18,9 @@ import com.rays.dto.CollegeDTO;
 import com.rays.dto.StudentDTO;
 
 /**
- * Implementation of StudentDAOInt interface.
- * Provides database operations for managing student information
- * with dynamic search criteria and college name population.
+ * Implementation of StudentDAOInt interface. Provides database operations for
+ * managing student information with dynamic search criteria and college name
+ * population.
  * 
  * @author Aniket Rajput
  */
@@ -31,22 +31,22 @@ public class StudentDAOImpl extends BaseDAOImpl<StudentDTO> implements StudentDA
 	private CollegeDAOInt collegeDao;
 
 	/**
-	 * Builds WHERE clause predicates for student search criteria.
-	 * Supports searching by enrolment number, first name, college name,
-	 * email, date of birth, and phone number.
+	 * Builds WHERE clause predicates for student search criteria. Supports
+	 * searching by enrolment number, first name, college name, email, date of
+	 * birth, and phone number.
 	 * 
-	 * @param dto the StudentDTO containing search criteria
+	 * @param dto     the StudentDTO containing search criteria
 	 * @param builder the CriteriaBuilder instance
-	 * @param qRoot the Root instance for the entity
+	 * @param qRoot   the Root instance for the entity
 	 * @return list of Predicates for the WHERE clause
 	 */
 	@Override
 	protected List<Predicate> getWhereClause(StudentDTO dto, CriteriaBuilder builder, Root<StudentDTO> qRoot) {
-		
+
 		List<Predicate> whereCondition = new ArrayList<Predicate>();
 
-		if(dto!=null) {
-			
+		if (dto != null) {
+
 			if (!isEmptyString(dto.getEnrolNo())) {
 				whereCondition.add(builder.like(qRoot.get("enrolNo"), dto.getEnrolNo() + "%"));
 			}
@@ -70,7 +70,7 @@ public class StudentDAOImpl extends BaseDAOImpl<StudentDTO> implements StudentDA
 			if (!isEmptyString(dto.getPhoneNo())) {
 				whereCondition.add(builder.like(qRoot.get("phoneNo"), dto.getPhoneNo() + "%"));
 			}
-			
+
 		}
 
 		return whereCondition;
@@ -79,7 +79,7 @@ public class StudentDAOImpl extends BaseDAOImpl<StudentDTO> implements StudentDA
 	/**
 	 * Populates the student DTO with college name based on college ID.
 	 * 
-	 * @param dto the StudentDTO to populate
+	 * @param dto         the StudentDTO to populate
 	 * @param userContext the user context containing current user information
 	 */
 	@Override

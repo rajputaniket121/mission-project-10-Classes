@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
- * Form for updating user profile information.
- * Handles validation for personal details like name, contact info, and date of birth.
+ * Form for updating user profile information. Handles validation for personal
+ * details like name, contact info, and date of birth.
  * 
  * @author Aniket Rajput
  */

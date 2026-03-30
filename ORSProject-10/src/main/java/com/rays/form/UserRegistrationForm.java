@@ -8,9 +8,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
- * Form for new user registration.
- * Handles validation for user sign-up including personal details
- * and login credentials.
+ * Form for new user registration. Handles validation for user sign-up including
+ * personal details and login credentials.
  * 
  * @author Aniket Rajput
  */

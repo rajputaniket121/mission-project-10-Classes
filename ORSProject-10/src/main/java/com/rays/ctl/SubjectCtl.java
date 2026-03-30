@@ -17,8 +17,8 @@ import com.rays.service.CourseServiceInt;
 import com.rays.service.SubjectServiceInt;
 
 /**
- * Controller for managing Subject entities.
- * Provides REST endpoints for CRUD operations and preload data.
+ * Controller for managing Subject entities. Provides REST endpoints for CRUD
+ * operations and preload data.
  * 
  * @author Aniket Rajput
  */

@@ -12,14 +12,13 @@ import com.rays.common.BaseForm;
 import com.rays.dto.StudentDTO;
 
 /**
- * Form for Student entity.
- * Handles validation and DTO conversion for student data including
- * enrollment number, personal details, and associated college.
+ * Form for Student entity. Handles validation and DTO conversion for student
+ * data including enrollment number, personal details, and associated college.
  * 
  * @author Aniket Rajput
  */
-public class StudentForm extends BaseForm<StudentDTO>{
-	
+public class StudentForm extends BaseForm<StudentDTO> {
+
 	@NotEmpty(message = "Enroll No is required")
 	private String enrolNo;
 

@@ -1,0 +1,13 @@
+com.rays
+com.rays.common
+com.rays.common.impl
+com.rays.config
+com.rays.ctl
+com.rays.dao
+com.rays.dao.impl
+com.rays.dto
+com.rays.exception
+com.rays.form
+com.rays.service
+com.rays.service.impl
+com.rays.utill

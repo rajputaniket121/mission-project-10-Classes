@@ -11,9 +11,9 @@ import com.rays.common.BaseForm;
 import com.rays.dto.UserDTO;
 
 /**
- * Form for User entity.
- * Handles validation and DTO conversion for user account data including
- * personal details, login credentials, role assignment, and account status.
+ * Form for User entity. Handles validation and DTO conversion for user account
+ * data including personal details, login credentials, role assignment, and
+ * account status.
  * 
  * @author Aniket Rajput
  */

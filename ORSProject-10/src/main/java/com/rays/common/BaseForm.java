@@ -7,7 +7,7 @@ package com.rays.common;
  * @param <T> DTO type extending BaseDTO
  */
 public class BaseForm<T extends BaseDTO> {
-	
+
 	protected Long id;
 
 	/**
@@ -27,7 +27,7 @@ public class BaseForm<T extends BaseDTO> {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * Gets the DTO associated with this form.
 	 * 
@@ -36,7 +36,7 @@ public class BaseForm<T extends BaseDTO> {
 	public T getDto() {
 		return null;
 	}
-	
+
 	/**
 	 * Initializes the DTO with the form's ID if present.
 	 * 
@@ -45,12 +45,12 @@ public class BaseForm<T extends BaseDTO> {
 	 */
 	public T initDTO(T dto) {
 		System.out.println("id => base dto => " + id);
-		if(id !=null && id > 0) {
+		if (id != null && id > 0) {
 			dto.setId(id);
-		}else {
+		} else {
 			dto.setId(null);
 		}
 		return dto;
 	}
-	
+
 }

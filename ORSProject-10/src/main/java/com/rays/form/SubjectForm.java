@@ -8,9 +8,8 @@ import com.rays.common.BaseForm;
 import com.rays.dto.SubjectDTO;
 
 /**
- * Form for Subject entity.
- * Handles validation and DTO conversion for subject data
- * including associated course information.
+ * Form for Subject entity. Handles validation and DTO conversion for subject
+ * data including associated course information.
  * 
  * @author Aniket Rajput
  */

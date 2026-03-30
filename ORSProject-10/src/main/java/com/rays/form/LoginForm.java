@@ -4,8 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * Form for user login authentication.
- * Captures login credentials with validation.
+ * Form for user login authentication. Captures login credentials with
+ * validation.
  * 
  * @author Aniket Rajput
  */

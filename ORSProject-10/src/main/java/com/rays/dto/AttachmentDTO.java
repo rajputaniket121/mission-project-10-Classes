@@ -12,8 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.rays.common.BaseDTO;
 
 /**
- * Data Transfer Object for file attachments.
- * Stores file metadata and binary content for user profile pictures and other attachments.
+ * Data Transfer Object for file attachments. Stores file metadata and binary
+ * content for user profile pictures and other attachments.
  * 
  * @author Aniket Rajput
  */
@@ -44,8 +44,8 @@ public class AttachmentDTO extends BaseDTO {
 	}
 
 	/**
-	 * Constructor that creates an AttachmentDTO from a MultipartFile.
-	 * Extracts file name, content type, and binary data from the uploaded file.
+	 * Constructor that creates an AttachmentDTO from a MultipartFile. Extracts file
+	 * name, content type, and binary data from the uploaded file.
 	 * 
 	 * @param file the uploaded multipart file
 	 */

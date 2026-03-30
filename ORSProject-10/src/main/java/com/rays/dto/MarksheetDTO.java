@@ -7,9 +7,9 @@ import javax.persistence.Table;
 import com.rays.common.BaseDTO;
 
 /**
- * Data Transfer Object for Marksheet entity.
- * Contains student marks for Physics, Chemistry, and Mathematics subjects,
- * along with roll number and student information.
+ * Data Transfer Object for Marksheet entity. Contains student marks for
+ * Physics, Chemistry, and Mathematics subjects, along with roll number and
+ * student information.
  * 
  * @author Aniket Rajput
  */
@@ -142,7 +142,7 @@ public class MarksheetDTO extends BaseDTO {
 	public void setMaths(Integer maths) {
 		this.maths = maths;
 	}
-	
+
 	/**
 	 * Gets the unique key attribute name for validation.
 	 * 
@@ -172,7 +172,7 @@ public class MarksheetDTO extends BaseDTO {
 	public String getLabel() {
 		return "Roll No";
 	}
-	
+
 	/**
 	 * Gets the table name for this DTO.
 	 * 

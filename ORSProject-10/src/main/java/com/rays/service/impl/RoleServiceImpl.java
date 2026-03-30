@@ -10,13 +10,13 @@ import com.rays.dto.RoleDTO;
 import com.rays.service.RoleServiceInt;
 
 /**
- * Implementation of RoleServiceInt interface.
- * Provides business logic operations for managing role information.
+ * Implementation of RoleServiceInt interface. Provides business logic
+ * operations for managing role information.
  * 
  * @author Aniket Rajput
  */
 @Service
 @Transactional
-public class RoleServiceImpl extends BaseServiceImpl<RoleDTO,RoleDAOInt> implements RoleServiceInt{
+public class RoleServiceImpl extends BaseServiceImpl<RoleDTO, RoleDAOInt> implements RoleServiceInt {
 
 }
