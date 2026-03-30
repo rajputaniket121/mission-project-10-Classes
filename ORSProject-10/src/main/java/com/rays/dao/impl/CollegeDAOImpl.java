@@ -13,9 +13,25 @@ import com.rays.common.impl.BaseDAOImpl;
 import com.rays.dao.CollegeDAOInt;
 import com.rays.dto.CollegeDTO;
 
+/**
+ * Implementation of CollegeDAOInt interface.
+ * Provides database operations for managing college information
+ * with dynamic search criteria.
+ * 
+ * @author Aniket Rajput
+ */
 @Repository
 public class CollegeDAOImpl extends BaseDAOImpl<CollegeDTO> implements CollegeDAOInt {
 
+	/**
+	 * Builds WHERE clause predicates for college search criteria.
+	 * Supports searching by name, city, state, address, and phone number.
+	 * 
+	 * @param dto the CollegeDTO containing search criteria
+	 * @param builder the CriteriaBuilder instance
+	 * @param qRoot the Root instance for the entity
+	 * @return list of Predicates for the WHERE clause
+	 */
 	@Override
 	protected List<Predicate> getWhereClause(CollegeDTO dto, CriteriaBuilder builder, Root<CollegeDTO> qRoot) {
 		List<Predicate> conditions = new ArrayList<Predicate>();
@@ -47,6 +63,11 @@ public class CollegeDAOImpl extends BaseDAOImpl<CollegeDTO> implements CollegeDA
 		return conditions;
 	}
 
+	/**
+	 * Gets the DTO class for this DAO implementation.
+	 * 
+	 * @return the Class object of CollegeDTO
+	 */
 	@Override
 	public Class<CollegeDTO> getDTOClass() {
 		return CollegeDTO.class;

@@ -17,12 +17,29 @@ import com.rays.dao.StudentDAOInt;
 import com.rays.dto.CollegeDTO;
 import com.rays.dto.StudentDTO;
 
+/**
+ * Implementation of StudentDAOInt interface.
+ * Provides database operations for managing student information
+ * with dynamic search criteria and college name population.
+ * 
+ * @author Aniket Rajput
+ */
 @Repository
 public class StudentDAOImpl extends BaseDAOImpl<StudentDTO> implements StudentDAOInt {
 
 	@Autowired
 	private CollegeDAOInt collegeDao;
 
+	/**
+	 * Builds WHERE clause predicates for student search criteria.
+	 * Supports searching by enrolment number, first name, college name,
+	 * email, date of birth, and phone number.
+	 * 
+	 * @param dto the StudentDTO containing search criteria
+	 * @param builder the CriteriaBuilder instance
+	 * @param qRoot the Root instance for the entity
+	 * @return list of Predicates for the WHERE clause
+	 */
 	@Override
 	protected List<Predicate> getWhereClause(StudentDTO dto, CriteriaBuilder builder, Root<StudentDTO> qRoot) {
 		
@@ -59,6 +76,12 @@ public class StudentDAOImpl extends BaseDAOImpl<StudentDTO> implements StudentDA
 		return whereCondition;
 	}
 
+	/**
+	 * Populates the student DTO with college name based on college ID.
+	 * 
+	 * @param dto the StudentDTO to populate
+	 * @param userContext the user context containing current user information
+	 */
 	@Override
 	public void populate(StudentDTO dto, UserContext userContext) {
 		CollegeDTO collegeDTO = collegeDao.findByPk(dto.getCollegeId(), userContext);
@@ -67,6 +90,11 @@ public class StudentDAOImpl extends BaseDAOImpl<StudentDTO> implements StudentDA
 		}
 	}
 
+	/**
+	 * Gets the DTO class for this DAO implementation.
+	 * 
+	 * @return the Class object of StudentDTO
+	 */
 	@Override
 	public Class<StudentDTO> getDTOClass() {
 		return StudentDTO.class;

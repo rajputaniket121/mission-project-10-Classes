@@ -12,12 +12,27 @@ import com.rays.common.BaseDTO;
 import com.rays.common.BaseServiceInt;
 import com.rays.common.UserContext;
 
+/**
+ * Base Service implementation providing common business logic operations
+ * with transaction management.
+ * 
+ * @author Aniket Rajput
+ * @param <T> DTO type extending BaseDTO
+ * @param <D> DAO type extending BaseDAOInt
+ */
 @Transactional
 public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implements BaseServiceInt<T> {
 	
 	@Autowired
 	protected D dao;
 
+	/**
+	 * Adds a new entity to the system.
+	 * 
+	 * @param dto the DTO to be added
+	 * @param userContext the user context containing current user information
+	 * @return the generated ID of the added entity
+	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public long add(T dto, UserContext userContext) {
@@ -25,6 +40,13 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 		return id;
 	}
 
+	/**
+	 * Updates an existing entity in the system.
+	 * Preserves createdBy and createdDateTime from the existing record.
+	 * 
+	 * @param dto the DTO with updated values
+	 * @param userContext the user context containing current user information
+	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(T dto, UserContext userContext) {
@@ -36,6 +58,13 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 		dao.update(dto, userContext);
 	}
 
+	/**
+	 * Saves an entity (adds if ID is null, updates if ID exists).
+	 * 
+	 * @param dto the DTO to be saved
+	 * @param userContext the user context containing current user information
+	 * @return the ID of the saved entity
+	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public long save(T dto, UserContext userContext) {
@@ -48,6 +77,13 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 		return id;
 	}
 
+	/**
+	 * Deletes an entity by its ID.
+	 * 
+	 * @param id the ID of the entity to delete
+	 * @param userContext the user context containing current user information
+	 * @return the deleted DTO
+	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public T delete(long id, UserContext userContext) {
@@ -56,6 +92,13 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 		return dto;
 	}
 
+	/**
+	 * Finds an entity by its ID.
+	 * 
+	 * @param id the ID to search for
+	 * @param userContext the user context containing current user information
+	 * @return the found DTO, or null if not found
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public T findById(long id, UserContext userContext) {
@@ -63,6 +106,14 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 		return dto;
 	}
 
+	/**
+	 * Finds an entity by a unique key attribute and value.
+	 * 
+	 * @param attribute the attribute name to search by
+	 * @param val the attribute value to search for
+	 * @param userContext the user context containing current user information
+	 * @return the found DTO, or null if not found
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public T findByUniqueKey(String attribute, String val, UserContext userContext) {
@@ -70,6 +121,15 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 		return dto;
 	}
 
+	/**
+	 * Searches for entities matching the given DTO criteria with pagination.
+	 * 
+	 * @param dto the DTO containing search criteria
+	 * @param pageNo the page number to retrieve (zero-based)
+	 * @param pageSize the number of records per page
+	 * @param userContext the user context containing current user information
+	 * @return list of DTOs matching the search criteria for the specified page
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List search(T dto, int pageNo, int pageSize, UserContext userContext) {
@@ -77,6 +137,13 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 		return list;
 	}
 
+	/**
+	 * Searches for all entities matching the given DTO criteria.
+	 * 
+	 * @param dto the DTO containing search criteria
+	 * @param userContext the user context containing current user information
+	 * @return list of all DTOs matching the search criteria
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List search(T dto, UserContext userContext) {

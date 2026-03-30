@@ -1,4 +1,3 @@
-
 package com.rays.ctl;
 
 import java.io.FileNotFoundException;
@@ -34,29 +33,20 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 
 /**
- * Jasper functionality Controller. Performs operation for Print pdf of
- * MarksheetMeriteList
- *
+ * Jasper functionality Controller.
+ * Performs operation for generating PDF reports for Marksheet Merit List.
+ * 
  * @author Aniket Rajput
  */
-/**
- * The Class JasperCtl.
- * 
- */
-
 @Transactional
-
 @RestController
 @RequestMapping(value = "Jasper")
 public class JasperCtl extends BaseCtl<MarksheetDTO, MarksheetForm, MarksheetServiceInt> {
 
 	/** The session factory. */
-
-//	  @Autowired 
 	private SessionFactory sessionFactory = null;
 
-	/** The context. */
-
+	/** The servlet context. */
 	@Autowired
 	ServletContext context;
 
@@ -64,13 +54,12 @@ public class JasperCtl extends BaseCtl<MarksheetDTO, MarksheetForm, MarksheetSer
 	protected EntityManager entityManager;
 
 	/**
-	 * Display.
-	 *
-	 * @param request  the request
-	 * @param response the response
-	 * @throws JRException  the JR exception
-	 * @throws SQLException the SQL exception
-	 * @throws IOException  Signals that an I/O exception has occurred.
+	 * Generates and displays the Marksheet Merit List report in PDF format.
+	 * 
+	 * @param response the HTTP response to write the PDF output
+	 * @throws JRException if Jasper report processing fails
+	 * @throws SQLException if database connection fails
+	 * @throws IOException if input/output error occurs
 	 */
 	@GetMapping(value = "/report", produces = MediaType.APPLICATION_PDF_VALUE)
 	public void display(HttpServletResponse response)

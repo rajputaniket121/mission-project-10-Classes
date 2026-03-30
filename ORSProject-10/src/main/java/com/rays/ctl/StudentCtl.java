@@ -15,6 +15,12 @@ import com.rays.form.StudentForm;
 import com.rays.service.CollegeServiceInt;
 import com.rays.service.StudentServiceInt;
 
+/**
+ * Controller for managing Student entities.
+ * Provides REST endpoints for CRUD operations and preload data.
+ * 
+ * @author Aniket Rajput
+ */
 @RestController
 @RequestMapping(value = "Student")
 public class StudentCtl extends BaseCtl<StudentDTO,StudentForm, StudentServiceInt> {
@@ -22,6 +28,11 @@ public class StudentCtl extends BaseCtl<StudentDTO,StudentForm, StudentServiceIn
 	@Autowired
 	private CollegeServiceInt collegeService;
 
+	/**
+	 * Preloads college list for dropdown in student forms.
+	 * 
+	 * @return ORSResponse containing collegeList
+	 */
 	@GetMapping("preload")
 	public ORSResponse preload() {
 		ORSResponse res = new ORSResponse(true);

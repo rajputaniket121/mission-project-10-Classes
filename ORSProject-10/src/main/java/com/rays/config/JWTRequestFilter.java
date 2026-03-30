@@ -20,6 +20,13 @@ import com.rays.common.UserContextHolder;
 import com.rays.dto.UserDTO;
 import com.rays.service.JWTUserDetailsService;
 
+/**
+ * JWT Request Filter that intercepts incoming requests to validate JWT tokens.
+ * Extracts token from Authorization header, validates it, and sets authentication
+ * in Spring Security context.
+ * 
+ * @author Aniket Rajput
+ */
 @Component
 public class JWTRequestFilter extends OncePerRequestFilter {
 
@@ -29,6 +36,15 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 	@Autowired
 	private JWTUserDetailsService jwtUserDetailsService;
 
+	/**
+	 * Filters incoming requests to validate JWT tokens.
+	 * 
+	 * @param request the HTTP request
+	 * @param response the HTTP response
+	 * @param filterChain the filter chain
+	 * @throws ServletException if a servlet error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {

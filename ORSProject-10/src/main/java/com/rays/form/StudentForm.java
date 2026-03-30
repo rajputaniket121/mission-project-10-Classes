@@ -11,6 +11,13 @@ import javax.validation.constraints.Pattern;
 import com.rays.common.BaseForm;
 import com.rays.dto.StudentDTO;
 
+/**
+ * Form for Student entity.
+ * Handles validation and DTO conversion for student data including
+ * enrollment number, personal details, and associated college.
+ * 
+ * @author Aniket Rajput
+ */
 public class StudentForm extends BaseForm<StudentDTO>{
 	
 	@NotEmpty(message = "Enroll No is required")
@@ -39,70 +46,155 @@ public class StudentForm extends BaseForm<StudentDTO>{
 
 	private String collegeName;
 
+	/**
+	 * Gets the enrollment number.
+	 * 
+	 * @return the enrollment number
+	 */
 	public String getEnrolNo() {
 		return enrolNo;
 	}
 
+	/**
+	 * Sets the enrollment number.
+	 * 
+	 * @param enrolNo the enrollment number to set
+	 */
 	public void setEnrolNo(String enrolNo) {
 		this.enrolNo = enrolNo;
 	}
 
+	/**
+	 * Gets the student's first name.
+	 * 
+	 * @return the first name
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+	/**
+	 * Sets the student's first name.
+	 * 
+	 * @param firstName the first name to set
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+	/**
+	 * Gets the student's last name.
+	 * 
+	 * @return the last name
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+	/**
+	 * Sets the student's last name.
+	 * 
+	 * @param lastName the last name to set
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * Gets the student's date of birth.
+	 * 
+	 * @return the date of birth
+	 */
 	public Date getDob() {
 		return dob;
 	}
 
+	/**
+	 * Sets the student's date of birth.
+	 * 
+	 * @param dob the date of birth to set
+	 */
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 
+	/**
+	 * Gets the student's phone number.
+	 * 
+	 * @return the phone number
+	 */
 	public String getPhoneNo() {
 		return phoneNo;
 	}
 
+	/**
+	 * Sets the student's phone number.
+	 * 
+	 * @param phoneNo the phone number to set
+	 */
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
+	/**
+	 * Gets the student's email address.
+	 * 
+	 * @return the email address
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets the student's email address.
+	 * 
+	 * @param email the email address to set
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Gets the college ID where student is enrolled.
+	 * 
+	 * @return the college ID
+	 */
 	public Long getCollegeId() {
 		return collegeId;
 	}
 
+	/**
+	 * Sets the college ID where student is enrolled.
+	 * 
+	 * @param collegeId the college ID to set
+	 */
 	public void setCollegeId(Long collegeId) {
 		this.collegeId = collegeId;
 	}
 
+	/**
+	 * Gets the college name where student is enrolled.
+	 * 
+	 * @return the college name
+	 */
 	public String getCollegeName() {
 		return collegeName;
 	}
 
+	/**
+	 * Sets the college name where student is enrolled.
+	 * 
+	 * @param collegeName the college name to set
+	 */
 	public void setCollegeName(String collegeName) {
 		this.collegeName = collegeName;
 	}
 
+	/**
+	 * Converts the form data to a StudentDTO.
+	 * 
+	 * @return the populated StudentDTO
+	 */
 	@Override
 	public StudentDTO getDto() {
 
@@ -126,6 +218,4 @@ public class StudentForm extends BaseForm<StudentDTO>{
 				+ dob + ", phoneNo=" + phoneNo + ", email=" + email + ", collegeId=" + collegeId + ", collegeName="
 				+ collegeName + "]";
 	}
-	
-	
 }

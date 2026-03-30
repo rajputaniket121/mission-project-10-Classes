@@ -16,6 +16,12 @@ import com.rays.form.SubjectForm;
 import com.rays.service.CourseServiceInt;
 import com.rays.service.SubjectServiceInt;
 
+/**
+ * Controller for managing Subject entities.
+ * Provides REST endpoints for CRUD operations and preload data.
+ * 
+ * @author Aniket Rajput
+ */
 @RestController
 @RequestMapping(value = "Subject")
 public class SubjectCtl extends BaseCtl<SubjectDTO, SubjectForm, SubjectServiceInt> {
@@ -23,6 +29,11 @@ public class SubjectCtl extends BaseCtl<SubjectDTO, SubjectForm, SubjectServiceI
 	@Autowired
 	private CourseServiceInt courseService;
 
+	/**
+	 * Preloads course list for dropdown in subject forms.
+	 * 
+	 * @return ORSResponse containing courseList
+	 */
 	@GetMapping("/preload")
 	public ORSResponse preload() {
 		ORSResponse res = new ORSResponse(true);

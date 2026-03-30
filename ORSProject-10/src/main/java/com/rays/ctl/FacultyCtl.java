@@ -20,9 +20,16 @@ import com.rays.service.CourseServiceInt;
 import com.rays.service.FacultyServiceInt;
 import com.rays.service.SubjectServiceInt;
 
+/**
+ * Controller for managing Faculty entities.
+ * Provides REST endpoints for CRUD operations on Faculty and preload data.
+ * 
+ * @author Aniket Rajput
+ */
 @RestController
 @RequestMapping(value = "Faculty")
 public class FacultyCtl extends BaseCtl<FacultyDTO, FacultyForm, FacultyServiceInt> {
+	
 	@Autowired
 	private CourseServiceInt courseService;
 
@@ -32,6 +39,11 @@ public class FacultyCtl extends BaseCtl<FacultyDTO, FacultyForm, FacultyServiceI
 	@Autowired
 	private CollegeServiceInt collegeService;
 
+	/**
+	 * Preloads dropdown lists required for Faculty forms.
+	 * 
+	 * @return ORSResponse containing courseList, subjectList, and collegeList
+	 */
 	@GetMapping("/preload")
 	public ORSResponse preload() {
 		ORSResponse res = new ORSResponse(true);

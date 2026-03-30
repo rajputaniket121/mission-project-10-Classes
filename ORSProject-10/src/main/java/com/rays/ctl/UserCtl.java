@@ -34,9 +34,17 @@ import com.rays.service.AttachmentServiceInt;
 import com.rays.service.RoleServiceInt;
 import com.rays.service.UserServiceInt;
 
+/**
+ * Controller for managing User entities.
+ * Provides REST endpoints for CRUD operations, profile management, password change,
+ * and profile picture upload/download.
+ * 
+ * @author Aniket Rajput
+ */
 @RestController
 @RequestMapping(value = "User")
 public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
+	
 	@Autowired
 	private RoleServiceInt roleService;
 
@@ -46,6 +54,11 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 	@Autowired
 	public AttachmentServiceInt attachmentService;
 
+	/**
+	 * Preloads role list for dropdown in user forms.
+	 * 
+	 * @return ORSResponse containing roleList
+	 */
 	@GetMapping(value = "preload")
 	public ORSResponse preload() {
 		ORSResponse orsResponse = new ORSResponse(true);
@@ -60,6 +73,13 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 		return orsResponse;
 	}
 
+	/**
+	 * Updates the profile information of the currently logged-in user.
+	 * 
+	 * @param form the my profile form containing updated user details
+	 * @param bindingResult validation result
+	 * @return ORSResponse with success message if profile updated successfully
+	 */
 	@PostMapping("myProfile")
 	public ORSResponse myProfile(@RequestBody @Valid MyProfileForm form, BindingResult bindingResult) {
 
@@ -84,6 +104,13 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 		return res;
 	}
 
+	/**
+	 * Changes the password for the specified user.
+	 * 
+	 * @param form the change password form containing loginId, old password, and new password
+	 * @param bindingResult validation result
+	 * @return ORSResponse with success message if password changed, or error if old password is invalid
+	 */
 	@PostMapping("changePassword")
 	public ORSResponse changePassword(@RequestBody @Valid ChangePasswordForm form, BindingResult bindingResult) {
 
@@ -108,6 +135,14 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 		return res;
 	}
 
+	/**
+	 * Uploads a profile picture for the user.
+	 * 
+	 * @param userId the ID of the user
+	 * @param file the multipart file to upload
+	 * @param req the HTTP request
+	 * @return ORSResponse containing the imageId of the uploaded picture
+	 */
 	@PostMapping("/profilePic/{userId}")
 	public ORSResponse uploadPic(@PathVariable Long userId, @RequestParam("file") MultipartFile file,
 			HttpServletRequest req) {
@@ -142,6 +177,12 @@ public class UserCtl extends BaseCtl<UserDTO, UserForm, UserServiceInt> {
 		return res;
 	}
 
+	/**
+	 * Downloads the profile picture for the specified user.
+	 * 
+	 * @param userId the ID of the user whose profile picture to download
+	 * @param response the HTTP response to write the image data
+	 */
 	@GetMapping("/profilePic/{userId}")
 	public @ResponseBody void downloadPic(@PathVariable Long userId, HttpServletResponse response) {
 

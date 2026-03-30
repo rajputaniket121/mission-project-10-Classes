@@ -17,6 +17,12 @@ import com.rays.service.CourseServiceInt;
 import com.rays.service.SubjectServiceInt;
 import com.rays.service.TimetableServiceInt;
 
+/**
+ * Controller for managing Timetable entities.
+ * Provides REST endpoints for CRUD operations and preload data.
+ * 
+ * @author Aniket Rajput
+ */
 @RestController
 @RequestMapping(value = "Timetable")
 public class TimetableCtl extends BaseCtl<TimetableDTO,TimetableForm, TimetableServiceInt> {
@@ -27,6 +33,11 @@ public class TimetableCtl extends BaseCtl<TimetableDTO,TimetableForm, TimetableS
 	@Autowired
 	private SubjectServiceInt subjectService;
 	
+	/**
+	 * Preloads course and subject lists for dropdown in timetable forms.
+	 * 
+	 * @return ORSResponse containing courseList and subjectList
+	 */
 	@GetMapping("preload")
 	public ORSResponse preload() {
 	ORSResponse res = new ORSResponse(true);

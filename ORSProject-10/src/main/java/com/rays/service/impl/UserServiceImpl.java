@@ -16,17 +16,37 @@ import com.rays.utill.EmailBuilder;
 import com.rays.utill.EmailMessage;
 import com.rays.utill.EmailUtility;
 
+/**
+ * Implementation of UserServiceInt interface.
+ * Provides business logic operations for user management including
+ * authentication, registration, password management, and email notifications.
+ * 
+ * @author Aniket Rajput
+ */
 @Service
 @Transactional
 public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> implements UserServiceInt {
 	
-	
-	
+	/**
+	 * Finds a user by their login ID.
+	 * 
+	 * @param login the login ID to search for
+	 * @param userContext the user context
+	 * @return the user DTO if found, null otherwise
+	 */
 	@Transactional(readOnly = true)
 	public UserDTO findByLoginId(String login, UserContext userContext) {
 		return dao.findByUniqueKey("loginId", login, userContext);
 	}
 
+	/**
+	 * Registers a new user account.
+	 * Sends a confirmation email with login credentials upon successful registration.
+	 * 
+	 * @param dto the user DTO to register
+	 * @param userContext the user context
+	 * @return the registered user DTO
+	 */
 	@Override
 	public UserDTO register(UserDTO dto, UserContext userContext) {
 
@@ -53,6 +73,14 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 		return dto;
 	}
 
+	/**
+	 * Authenticates a user with login ID and password.
+	 * Updates unsuccessful login attempts and last login timestamp.
+	 * 
+	 * @param loginId the user's login ID
+	 * @param password the user's password
+	 * @return the authenticated user DTO, null if authentication fails
+	 */
 	@Override
 	public UserDTO authenticate(String loginId, String password) {
 
@@ -73,6 +101,13 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 		return null;
 	}
 
+	/**
+	 * Handles forgot password functionality.
+	 * Sends the password to the registered email address.
+	 * 
+	 * @param loginId the login ID for password recovery
+	 * @return the user DTO if found, null otherwise
+	 */
 	@Override
 	public UserDTO forgotPassword(String loginId) {
 
@@ -97,6 +132,16 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 		return dto;
 	}
 
+	/**
+	 * Changes the user's password after validating the old password.
+	 * Sends a confirmation email upon successful password change.
+	 * 
+	 * @param loginId the user's login ID
+	 * @param oldPassword the current password
+	 * @param newPassword the new password to set
+	 * @param userContext the user context
+	 * @return the updated user DTO, null if old password is invalid
+	 */
 	@Override
 	public UserDTO changePassword(String loginId, String oldPassword, String newPassword, UserContext userContext) {
 

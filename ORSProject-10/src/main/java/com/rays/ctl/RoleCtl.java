@@ -12,10 +12,21 @@ import com.rays.dto.RoleDTO;
 import com.rays.form.RoleForm;
 import com.rays.service.RoleServiceInt;
 
+/**
+ * Controller for managing Role entities.
+ * Provides REST endpoints for CRUD operations and preload data.
+ * 
+ * @author Aniket Rajput
+ */
 @RestController
 @RequestMapping(value = "Role")
 public class RoleCtl extends BaseCtl<RoleDTO, RoleForm, RoleServiceInt> {
 	
+	/**
+	 * Preloads role list for dropdown in forms.
+	 * 
+	 * @return ORSResponse containing roleList for dropdown selection
+	 */
 	@GetMapping(value = "preload")
 	public ORSResponse preload() {
 		ORSResponse orsResponse = new ORSResponse(true);

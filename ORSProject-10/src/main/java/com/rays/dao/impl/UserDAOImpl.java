@@ -18,6 +18,14 @@ import com.rays.dto.RoleDTO;
 import com.rays.dto.UserDTO;
 import com.rays.service.AttachmentServiceInt;
 
+/**
+ * Implementation of UserDAOInt interface.
+ * Provides database operations for managing user information
+ * with dynamic search criteria, role name population, and cascade delete
+ * for associated profile pictures.
+ * 
+ * @author Aniket Rajput
+ */
 @Repository
 public class UserDAOImpl extends BaseDAOImpl<UserDTO> implements UserDAOInt {
 
@@ -27,6 +35,15 @@ public class UserDAOImpl extends BaseDAOImpl<UserDTO> implements UserDAOInt {
 	@Autowired
 	private AttachmentServiceInt attachmentServiceInt;
 
+	/**
+	 * Builds WHERE clause predicates for user search criteria.
+	 * Supports searching by first name, login ID, role ID, date of birth, and status.
+	 * 
+	 * @param dto the UserDTO containing search criteria
+	 * @param builder the CriteriaBuilder instance
+	 * @param qRoot the Root instance for the entity
+	 * @return list of Predicates for the WHERE clause
+	 */
 	@Override
 	protected List<Predicate> getWhereClause(UserDTO dto, CriteriaBuilder builder, Root<UserDTO> qRoot) {
 		List<Predicate> conditions = new ArrayList<Predicate>();
@@ -52,11 +69,23 @@ public class UserDAOImpl extends BaseDAOImpl<UserDTO> implements UserDAOInt {
 		return conditions;
 	}
 
+	/**
+	 * Gets the DTO class for this DAO implementation.
+	 * 
+	 * @return the Class object of UserDTO
+	 */
 	@Override
 	public Class<UserDTO> getDTOClass() {
 		return UserDTO.class;
 	}
 
+	/**
+	 * Populates the user DTO with role name and preserves existing
+	 * last login and image ID information.
+	 * 
+	 * @param dto the UserDTO to populate
+	 * @param userContext the user context containing current user information
+	 */
 	@Override
 	public void populate(UserDTO dto, UserContext userContext) {
 		if (dto.getRoleId() != null && dto.getRoleId() > 0) {
@@ -73,7 +102,13 @@ public class UserDAOImpl extends BaseDAOImpl<UserDTO> implements UserDAOInt {
 		}
 	}
 	
-	
+	/**
+	 * Deletes a user and also deletes their associated profile picture
+	 * to maintain data integrity.
+	 * 
+	 * @param dto the UserDTO to delete
+	 * @param userContext the user context containing current user information
+	 */
 	@Override
 	public void delete(UserDTO dto, UserContext userContext) {
 		if (dto.getImageId() != null && dto.getImageId() > 0) {

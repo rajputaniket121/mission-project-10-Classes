@@ -19,6 +19,13 @@ import com.rays.dto.CourseDTO;
 import com.rays.dto.SubjectDTO;
 import com.rays.dto.TimetableDTO;
 
+/**
+ * Implementation of TimetableDAOInt interface.
+ * Provides database operations for managing timetable information
+ * with dynamic search criteria and name population from related entities.
+ * 
+ * @author Aniket Rajput
+ */
 @Repository
 public class TimetableDAOImpl extends BaseDAOImpl<TimetableDTO> implements TimetableDAOInt {
 	
@@ -28,6 +35,13 @@ public class TimetableDAOImpl extends BaseDAOImpl<TimetableDTO> implements Timet
 	@Autowired
 	private CourseDAOInt courseDao;
 
+	/**
+	 * Populates the timetable DTO with subject and course names
+	 * based on their respective IDs.
+	 * 
+	 * @param dto the TimetableDTO to populate
+	 * @param userContext the user context containing current user information
+	 */
 	@Override
 	public void populate(TimetableDTO dto, UserContext userContext) {
 
@@ -46,6 +60,15 @@ public class TimetableDAOImpl extends BaseDAOImpl<TimetableDTO> implements Timet
 		
 	}
 
+	/**
+	 * Builds WHERE clause predicates for timetable search criteria.
+	 * Supports searching by subject name and course name.
+	 * 
+	 * @param dto the TimetableDTO containing search criteria
+	 * @param builder the CriteriaBuilder instance
+	 * @param qRoot the Root instance for the entity
+	 * @return list of Predicates for the WHERE clause
+	 */
 	@Override
 	protected List<Predicate> getWhereClause(TimetableDTO dto, CriteriaBuilder builder, Root<TimetableDTO> qRoot) {
 		
@@ -66,6 +89,11 @@ public class TimetableDAOImpl extends BaseDAOImpl<TimetableDTO> implements Timet
 		return whereCondition;
 	}
 
+	/**
+	 * Gets the DTO class for this DAO implementation.
+	 * 
+	 * @return the Class object of TimetableDTO
+	 */
 	@Override
 	public Class<TimetableDTO> getDTOClass() {
 		return TimetableDTO.class;

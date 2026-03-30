@@ -9,6 +9,12 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Main application class for ORS Project 10 Spring Boot application.
+ * Configures CORS (Cross-Origin Resource Sharing) for frontend access.
+ * 
+ * @author Aniket Rajput
+ */
 @SpringBootApplication
 public class ORSProject10SpringBootApplication {
 	
@@ -17,17 +23,24 @@ public class ORSProject10SpringBootApplication {
 		SpringApplication.run(ORSProject10SpringBootApplication.class, args);
 	}
 	
+	/**
+	 * Configures CORS settings to allow cross-origin requests from frontend applications.
+	 * Allows requests from localhost:4200 (Angular dev server) and localhost.
+	 * 
+	 * @return WebMvcConfigurer with CORS configuration
+	 */
 	@Bean
 	public WebMvcConfigurer corsConfig() {
-		WebMvcConfigurer w = new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				CorsRegistration cors = registry.addMapping("/**").allowedOrigins("http://localhost:4200","http://localhost")
-						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").allowedHeaders("*")
-						.allowCredentials(true);
-			}
-		};
-		return w;
+		return new WebMvcConfigurer() {
+	        @Override
+	        public void addCorsMappings(CorsRegistry registry) {
+	            registry.addMapping("/**")
+	                .allowedOrigins("http://localhost:4200", "http://localhost")
+	                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+	                .allowedHeaders("*")
+	                .allowCredentials(true);
+	        }
+	    };
 	}
 
 }

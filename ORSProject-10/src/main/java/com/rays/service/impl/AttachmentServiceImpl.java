@@ -8,6 +8,12 @@ import com.rays.dao.impl.AttachmentDAOImpl;
 import com.rays.dto.AttachmentDTO;
 import com.rays.service.AttachmentServiceInt;
 
+/**
+ * Implementation of AttachmentServiceInt interface.
+ * Provides business logic operations for managing file attachments.
+ * 
+ * @author Aniket Rajput
+ */
 @Service
 @Transactional
 public class AttachmentServiceImpl extends BaseServiceImpl<AttachmentDTO,AttachmentDAOImpl> implements AttachmentServiceInt{

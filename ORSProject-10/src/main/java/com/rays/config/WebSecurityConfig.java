@@ -9,6 +9,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Spring Security configuration class for JWT-based authentication.
+ * Configures security rules, disables CSRF, and sets session to stateless.
+ * 
+ * @author Aniket Rajput
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -17,6 +23,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JWTRequestFilter jwtRequestFilter;
 
+	/**
+	 * Configures HTTP security settings.
+	 * 
+	 * @param http the HttpSecurity object to configure
+	 * @throws Exception if configuration fails
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/Auth/**", "/User/profilePic/**", "/Jasper/report/**").permitAll()

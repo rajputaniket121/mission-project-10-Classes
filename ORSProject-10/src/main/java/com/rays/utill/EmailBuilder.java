@@ -5,18 +5,21 @@ import java.util.HashMap;
 import org.springframework.stereotype.Component;
 
 /**
- * EmailBuilder is used to build the email message
+ * EmailBuilder is used to build email messages for various notifications.
+ * Provides static methods to construct HTML email templates for user
+ * registration, forgot password, and change password scenarios.
+ * 
  * @author Aniket Rajput
- *
  */
 @Component
 public class EmailBuilder {
+	
 	/**
-	 * Returns Successful User Registration Message
+	 * Returns HTML message for successful user registration.
+	 * Includes login credentials and welcome message.
 	 *
-	 * @param map
-	 *            : Message parameters
-	 * @return
+	 * @param map contains message parameters with keys "login" and "password"
+	 * @return HTML formatted registration confirmation email
 	 */
 	public static String getUserRegistrationMessage(HashMap<String, String> map) {
 		StringBuilder msg = new StringBuilder();
@@ -44,21 +47,17 @@ public class EmailBuilder {
 	}
 
 	/**
-	 * Returns Email message of Forget Password
+	 * Returns HTML message for forgot password functionality.
+	 * Sends the user's login credentials to their registered email.
 	 *
-	 * @param map
-	 *            : params
-	 * @return
+	 * @param map contains message parameters with keys "login", "password", "firstName", "lastName"
+	 * @return HTML formatted password recovery email
 	 */
 	public static String getForgetPasswordMessage(HashMap<String, String> map) {
 		StringBuilder msg = new StringBuilder();
 
 		msg.append("<HTML><BODY>");
 		msg.append("<H1>Your password has been recovered !! " + map.get("firstName") + " " + map.get("lastName") + "</H1>");
-		/*
-		 * msg.append("<P>To access account user login ID : " + map.get("login")
-		 * + " and password " + map.get("password") + "</P>");
-		 */
 		msg.append("<P><B>To access account user Login Id : " + map.get("login") + "<BR>" + " Password : "
 				+ map.get("password") + "</B></p>");
 		msg.append("</BODY></HTML>");
@@ -67,10 +66,11 @@ public class EmailBuilder {
 	}
 
 	/**
-	 * Returns Email message of Change Password
+	 * Returns HTML message for password change confirmation.
+	 * Notifies the user that their password has been successfully changed.
 	 *
-	 * @param map
-	 * @return
+	 * @param map contains message parameters with keys "login", "password", "firstName", "lastName"
+	 * @return HTML formatted password change confirmation email
 	 */
 	public static String getChangePasswordMessage(HashMap<String, String> map) {
 		StringBuilder msg = new StringBuilder();
@@ -78,10 +78,6 @@ public class EmailBuilder {
 		msg.append("<HTML><BODY>");
 		msg.append("<H1>Your Password has been changed Successfully !! " + map.get("firstName") + " "
 				+ map.get("lastName") + "</H1>");
-		/*
-		 * msg.append("<P>To access account user login ID : " + map.get("login")
-		 * + " and password " + map.get("password") + "</P>");
-		 */
 		msg.append("<P><B>To access account user Login Id : " + map.get("login") + "<BR>" + " Password : "
 				+ map.get("password") + "</B></p>");
 		msg.append("</BODY></HTML>");

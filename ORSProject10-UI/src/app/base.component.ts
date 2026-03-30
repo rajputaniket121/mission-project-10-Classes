@@ -35,6 +35,8 @@ export class BaseCtl implements OnInit {
     this.api.preload = ep + '/preload';
   }
 
+  fileToUpload: any = null;
+
   constructor(
     public endpoint: String,
     public serviceLocator: ServiceLocatorService,
@@ -85,7 +87,7 @@ export class BaseCtl implements OnInit {
       _self.form.inputerror = {};
       if (res.success) {
         _self.form.message = res.result.message;
-        _self.form.data.id = res.result.data;
+        _self.form.data.id = res.result.data.id;
       } else {
         _self.form.error = true;
         if (res.result.inputerror) {
@@ -93,6 +95,22 @@ export class BaseCtl implements OnInit {
         }
         _self.form.message = res.result.message;
       }
+      if (_self.fileToUpload != null) {
+        _self.uploadFile();
+        _self.display();
+      }
+    });
+  }
+
+  uploadFile() {
+    let self = this;
+    const formData = new FormData();
+    formData.append('file', this.fileToUpload);
+    console.log("file", this.fileToUpload);
+    console.log("id = ", this.form.data.id);
+    return this.serviceLocator.httpService.post("http://localhost:8080/User/profilePic/" + this.form.data.id, formData, function (res: any) {
+      console.log("imageId = " + res.result.imageId);
+      self.form.data.imageId = res.result.imageId;
     });
   }
 

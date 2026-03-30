@@ -12,9 +12,21 @@ import org.springframework.stereotype.Service;
 
 import com.rays.dto.UserDTO;
 
+/**
+ * Service for loading user details during JWT authentication.
+ * Implements Spring Security's UserDetailsService to provide
+ * user information for token validation.
+ * 
+ * @author Aniket Rajput
+ */
 @Service
 public class JWTUserDetailsService implements UserDetailsService {
 
+	/**
+	 * Creates a password encoder bean for password encryption.
+	 * 
+	 * @return BCryptPasswordEncoder instance
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -23,6 +35,13 @@ public class JWTUserDetailsService implements UserDetailsService {
 	@Autowired
 	UserServiceInt userService;
 
+	/**
+	 * Loads user details by username for authentication.
+	 * 
+	 * @param username the login ID of the user
+	 * @return UserDetails object containing user credentials and roles
+	 * @throws UsernameNotFoundException if user is not found
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
