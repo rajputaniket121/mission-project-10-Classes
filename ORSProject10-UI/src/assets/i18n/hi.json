@@ -25,6 +25,17 @@
         "HiUser": "नमस्ते, {{name}} ( {{role}} )",
         "HiGuest": "नमस्ते, अतिथि"
     },
+    "Nav": {
+        "User": "उपयोगकर्ता",
+        "Role": "भूमिका",
+        "College": "कॉलेज",
+        "Student": "छात्र",
+        "Marksheet": "मार्कशीट",
+        "Course": "कोर्स",
+        "Subject": "विषय",
+        "Timetable": "टाइमटेबल",
+        "Faculty": "फैकल्टी"
+    },
     "Links": {
         "MyProfile": "मेरा प्रोफ़ाइल",
         "ChangePassword": "पासवर्ड बदलें",

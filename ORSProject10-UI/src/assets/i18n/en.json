@@ -25,6 +25,17 @@
         "HiUser": "Hi, {{name}} ( {{role}} )",
         "HiGuest": "Hi, Guest"
     },
+    "Nav": {
+        "User": "User",
+        "Role": "Role",
+        "College": "College",
+        "Student": "Student",
+        "Marksheet": "Marksheet",
+        "Course": "Course",
+        "Subject": "Subject",
+        "Timetable": "Timetable",
+        "Faculty": "Faculty"
+    },
     "Links": {
         "MyProfile": "My Profile",
         "ChangePassword": "Change Password",
