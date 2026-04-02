@@ -73,7 +73,10 @@ export class BaseCtl implements OnInit {
     });
   }
 
+  databaseDown: string | null = null
+
   ngOnInit(): void {
+    this.databaseDown = localStorage.getItem("DatabaseDown");
     this.preload();
     if (this.form.data.id && this.form.data.id > 0) {
       this.display();
@@ -83,6 +86,7 @@ export class BaseCtl implements OnInit {
   submit() {
     var _self = this;
     this.serviceLocator.httpService.post(this.api.save, this.form.data, function (res: any) {
+      console.log("in base ", res)
       _self.form.message = '';
       _self.form.inputerror = {};
       if (res.success) {

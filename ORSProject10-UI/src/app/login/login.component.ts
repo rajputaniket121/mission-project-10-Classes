@@ -8,7 +8,7 @@ import { HttpServiceService } from '../http-service.service';
 })
 export class LoginComponent {
 
-  endpoint = "http://localhost:8080/Auth/login";
+  endpoint = "http://localhost:8081/Auth/login";
 
   form: any = {
     error: false,
@@ -35,8 +35,11 @@ export class LoginComponent {
       if (res.result.message) {
         _self.form.message = res.result.message;
       }
+      console.log("massgae from backend ", res.result.message)
+      console.log("massage in frontend  ", _self.form.message)
 
       _self.form.error = !res.success;
+      console.log("status of error is success true error false in frontend  ", _self.form.error)
       if (_self.form.error && res.result.inputerror) {
         _self.form.inputerror = res.result.inputerror;
       }

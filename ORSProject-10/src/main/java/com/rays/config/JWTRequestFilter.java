@@ -7,12 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.rays.common.UserContext;
@@ -89,7 +92,16 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 				// ThreadLocal me set
 				UserContextHolder.setContext(context);
 
-			} catch (Exception e) {
+			}catch(CannotCreateTransactionException | DataAccessResourceFailureException | JDBCConnectionException e) {
+				 // DB is down
+                response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE); // 503
+                response.setContentType("application/json");
+                response.getWriter().write("{\"result\":{\"message\":\"Database server down!! Please try again later.\"},\"success\":false}");
+                return;
+			}
+			catch (Exception e) {
+				
+				
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				response.getWriter().write("Token is invalid... plz login again..!!");
 				return;

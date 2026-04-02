@@ -162,9 +162,9 @@
                                     style="width: 80px; height: 80px; object-fit: cover;">
                                 <!-- Show user's existing profile image if available -->
                                 <img *ngIf="!imagePreview && form.data.id > 0 && form.data.imageId > 0"
-                                    [src]="'http://localhost:8080/User/profilePic/' + form.data.id"
+                                    [src]="'http://localhost:8081/User/profilePic/' + form.data.id"
                                     alt="User profile image" class="rounded-circle border border-2 border-light"
-                                    style="width: 80px; height: 80px; object-fit: cover;">
+                                    style="width: 80px; height: 80px; object-fit: cover;">x
                                 <!-- Show default image if no preview and no existing image -->
                                 <img *ngIf="!imagePreview && (!form.data.id || form.data.imageId == null)"
                                     src="./assets/img/deafultUserPic.png" alt="Default profile image"
