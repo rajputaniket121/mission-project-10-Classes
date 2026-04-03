@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ORSProject10-UI';
+  constructor() {
+    localStorage.clear();
+  }
 }
