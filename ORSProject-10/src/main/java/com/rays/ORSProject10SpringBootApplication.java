@@ -25,7 +25,7 @@ public class ORSProject10SpringBootApplication {
 	/**
 	 * Configures CORS settings to allow cross-origin requests from frontend
 	 * applications. Allows requests from localhost:4200 (Angular dev server) and
-	 * localhost.
+	 * localhost:8080.
 	 * 
 	 * @return WebMvcConfigurer with CORS configuration
 	 */

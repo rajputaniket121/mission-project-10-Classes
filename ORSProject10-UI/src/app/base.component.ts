@@ -112,7 +112,7 @@ export class BaseCtl implements OnInit {
     formData.append('file', this.fileToUpload);
     console.log("file", this.fileToUpload);
     console.log("id = ", this.form.data.id);
-    return this.serviceLocator.httpService.post("http://localhost:8080/User/profilePic/" + this.form.data.id, formData, function (res: any) {
+    return this.serviceLocator.httpService.post("http://localhost:8081/User/profilePic/" + this.form.data.id, formData, function (res: any) {
       console.log("imageId = " + res.result.imageId);
       self.form.data.imageId = res.result.imageId;
     });

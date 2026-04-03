@@ -145,7 +145,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	@Override
 	public UserDTO changePassword(String loginId, String oldPassword, String newPassword, UserContext userContext) {
 
-		UserDTO dto = findByLoginId(loginId, null);
+		UserDTO dto = findByLoginId(loginId, userContext);
 
 		if (dto != null && oldPassword.equals(dto.getPassword())) {
 			dto.setPassword(newPassword);

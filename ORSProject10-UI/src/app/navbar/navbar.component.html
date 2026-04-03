@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <!-- Brand / Logo -->
     <a class="navbar-brand" [routerLink]="['/']">
-        <img src="assets/img/rayslogo.jpg" height="42" alt="Logo">
+        <img *ngIf="!isLogin()" src="assets/img/rayslogo.jpg" height="42" alt="Logo">
+        <img *ngIf="isLogin()" [src]="'http://localhost:8081/User/profilePic/' + form.data.userId"
+            (error)="handleError($event)" alt="User profile image" height="42px">
     </a>
 
     <!-- Language Selector -->

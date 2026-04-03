@@ -30,6 +30,7 @@ export class NavbarComponent {
   isLogin() {
     let check = localStorage.getItem('fname');
     if (check != "null" && check != null) {
+      this.form.data.userId = localStorage.getItem("userId");
       this.form.data.fname = localStorage.getItem("fname");
       this.form.data.role = localStorage.getItem("role");
       return true;
@@ -53,5 +54,9 @@ export class NavbarComponent {
 
   goToDoc() {
     window.open('assets/doc/index.html', '_blank');
+  }
+
+  handleError(event: any) {
+    event.target.src = '/assets/img/deafultUserPic.png';
   }
 }
