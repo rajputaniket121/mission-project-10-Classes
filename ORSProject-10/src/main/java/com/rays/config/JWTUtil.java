@@ -40,8 +40,8 @@ public class JWTUtil {
 	 * @throws Exception if token generation fails
 	 */
 	public String generateToken(Long userId, String loginId, String role) throws Exception {
-		long nowMillis = System.currentTimeMillis();
-		long expMillis = nowMillis + jwtExpiration;
+		long nowMillis = System.currentTimeMillis() / 1000; // current time in seconds 
+		long expMillis = nowMillis + (jwtExpiration / 1000); //30 minutes
 
 		// JWT Header
 		Map<String, Object> header = new HashMap<>();
@@ -53,8 +53,8 @@ public class JWTUtil {
 		payload.put("sub", loginId); // loginId as subject
 		payload.put("userId", userId); // numeric user id
 		payload.put("role", role); // user role
-		payload.put("iat", nowMillis); // issued at
-		payload.put("exp", expMillis); // expiration
+		payload.put("iat", nowMillis); // issued at (seconds)
+		payload.put("exp", expMillis); // expiration (seconds)
 
 		String headerBase64 = encodeUrl(objectMapper.writeValueAsString(header));
 		String payloadBase64 = encodeUrl(objectMapper.writeValueAsString(payload));

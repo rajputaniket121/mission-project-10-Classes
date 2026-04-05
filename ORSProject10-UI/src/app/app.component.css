@@ -1,0 +1,30 @@
+/* Full height layout */
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Fixed navbar */
+.navbar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    /* adjust to your navbar height */
+    z-index: 1000;
+}
+
+/* Main content spacing */
+.main-content {
+    flex: 1;
+    margin-top: 70px;
+    /* SAME as navbar height */
+    padding: 20px;
+}
+
+/* Footer stays at bottom */
+app-footer {
+    margin-top: auto;
+}

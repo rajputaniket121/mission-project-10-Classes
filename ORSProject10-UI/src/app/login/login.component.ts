@@ -25,7 +25,9 @@ export class LoginComponent {
     }
     const nav = this.router.getCurrentNavigation();
     const message = nav?.extras?.state?.['message'];
-    this.form.message = message;
+    if (message) {
+      this.form.message = message;
+    }
   }
 
   signIn() {
