@@ -26,7 +26,8 @@
             <ng-container *ngIf="isLogin()">
 
                 <!-- User -->
-                <li class="nav-item dropdown px-1">
+                <li class="nav-item dropdown px-1"
+                    [hidden]="form.data.role == 'Student' || form.data.role == 'Faculty'">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.User' | translate }}
                     </a>
                     <div class="dropdown-menu">
@@ -45,7 +46,7 @@
                 <li class="nav-item dropdown px-1">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.Marksheet' | translate }}</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" [routerLink]="['/marksheet']">
+                        <a class="dropdown-item" [routerLink]="['/marksheet']" [hidden]="form.data.role == 'Student'">
                             <i class="fas fa-file mr-2"></i>
                             {{ 'Links.AddMarksheet' | translate }}
                         </a>
@@ -65,7 +66,8 @@
                 </li>
 
                 <!-- Role -->
-                <li class="nav-item dropdown px-1">
+                <li class="nav-item dropdown px-1"
+                    [hidden]="form.data.role == 'Student' || form.data.role == 'Faculty'">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.Role' | translate }}
                     </a>
                     <div class="dropdown-menu">
@@ -81,7 +83,8 @@
                 </li>
 
                 <!-- College -->
-                <li class="nav-item dropdown px-1">
+                <li class="nav-item dropdown px-1"
+                    [hidden]="form.data.role == 'Student' || form.data.role == 'Faculty'">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.College' | translate }}
                     </a>
                     <div class="dropdown-menu">
@@ -97,7 +100,7 @@
                 </li>
 
                 <!-- Course -->
-                <li class="nav-item dropdown px-1">
+                <li class="nav-item dropdown px-1" [hidden]="form.data.role == 'Student'">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.Course' | translate }}
                     </a>
                     <div class="dropdown-menu">
@@ -113,7 +116,7 @@
                 </li>
 
                 <!-- Student -->
-                <li class="nav-item dropdown px-1">
+                <li class="nav-item dropdown px-1" [hidden]="form.data.role == 'Student'">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.Student' | translate }}
                     </a>
                     <div class="dropdown-menu">
@@ -129,7 +132,8 @@
                 </li>
 
                 <!-- Faculty -->
-                <li class="nav-item dropdown px-1">
+                <li class="nav-item dropdown px-1"
+                    [hidden]="form.data.role == 'Student' || form.data.role == 'Faculty'">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.Faculty' | translate }}
                     </a>
                     <div class="dropdown-menu">
@@ -145,7 +149,7 @@
                 </li>
 
                 <!-- Time Table -->
-                <li class="nav-item dropdown px-1">
+                <li class="nav-item dropdown px-1" [hidden]="form.data.role == 'Student'">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.Timetable' | translate }}
                     </a>
                     <div class="dropdown-menu">
@@ -161,7 +165,7 @@
                 </li>
 
                 <!-- Subject -->
-                <li class="nav-item dropdown px-1">
+                <li class="nav-item dropdown px-1" [hidden]="form.data.role == 'Student'">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.Subject' | translate }}
                     </a>
                     <div class="dropdown-menu">

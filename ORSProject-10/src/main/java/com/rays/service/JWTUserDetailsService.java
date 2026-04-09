@@ -48,7 +48,6 @@ public class JWTUserDetailsService implements UserDetailsService {
 		UserDTO user = userService.findByLoginId(username, null);
 
 		if (user == null) {
-			System.out.println("user found nuulllll");
 			throw new UsernameNotFoundException("User not found with username : " + username);
 		}
 
