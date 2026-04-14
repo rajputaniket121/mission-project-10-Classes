@@ -40,11 +40,8 @@ export class LoginComponent {
       if (res.result.message) {
         _self.form.message = res.result.message;
       }
-      console.log("massgae from backend ", res.result.message)
-      console.log("massage in frontend  ", _self.form.message)
 
       _self.form.error = !res.success;
-      console.log("status of error is success true error false in frontend  ", _self.form.error)
       if (_self.form.error && res.result.inputerror) {
         _self.form.inputerror = res.result.inputerror;
       }
@@ -53,8 +50,6 @@ export class LoginComponent {
         localStorage.setItem("loginId", res.result.data.loginId);
         localStorage.setItem("role", res.result.role);
         localStorage.setItem("fname", res.result.fname);
-        console.log(res);
-        console.log(res.result);
         localStorage.setItem("lname", res.result.lname);
         localStorage.setItem("userId", res.result.data.id);
         localStorage.setItem('token', 'Bearer ' + res.result.token)
