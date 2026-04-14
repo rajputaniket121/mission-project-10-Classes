@@ -105,14 +105,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 				// ThreadLocal me set
 				UserContextHolder.setContext(context);
 
-			}catch(CannotCreateTransactionException | DataAccessResourceFailureException | JDBCConnectionException e) {
-				 // DB is down
-                response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE); // 503
-                response.setContentType("application/json");
-                response.getWriter().write("{\"result\":{\"message\":\"Database server down!! Please try again later.\"},\"success\":false}");
-                return;
-			}
-			catch (Exception e) {
+			}catch (Exception e) {
 				
 				
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

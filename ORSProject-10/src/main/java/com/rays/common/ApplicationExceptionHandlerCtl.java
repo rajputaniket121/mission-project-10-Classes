@@ -1,5 +1,6 @@
 package com.rays.common;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataAccessResourceFailureException;
 import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,7 @@ public class ApplicationExceptionHandlerCtl {
 	 * @return ResponseEntity containing ORSResponse with a user-friendly error
 	 *         message and HTTP 503 SERVICE_UNAVAILABLE status
 	 */
-	@ExceptionHandler({ CannotCreateTransactionException.class, DataAccessResourceFailureException.class,
-			JDBCConnectionException.class })
+	@ExceptionHandler({DataAccessException.class,CannotCreateTransactionException.class})
 	public ResponseEntity<ORSResponse> handleDatabaseException(Exception e) {
 		ORSResponse res = new ORSResponse(false);
 		res.addMessage("Database service is currently unavailable. Please try again later.");
