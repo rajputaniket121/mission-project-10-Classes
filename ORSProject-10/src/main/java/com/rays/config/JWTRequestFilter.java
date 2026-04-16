@@ -60,8 +60,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 
 		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
 
-			System.out.println("JWT Token ======>>>>> iiiiinnnnnn");
-
 			String jwtToken = authorizationHeader.substring(7);
 
 			try {
@@ -85,7 +83,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 //				}
 				
 				 if (loginId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-	                    // ✅ Build authentication directly from token claims — no DB call!
 	                    String role = jwtUtil.extractRole(jwtToken);
 	                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 	                            loginId, null,
@@ -98,18 +95,14 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 				UserDTO dto = new UserDTO();
 				dto.setLoginId(loginId);
 
-				System.out.println("request filter: " + dto.getLoginId());
-
 				UserContext context = new UserContext(dto);
 
 				// ThreadLocal me set
 				UserContextHolder.setContext(context);
 
 			}catch (Exception e) {
-				
-				
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-				response.getWriter().write("Token is invalid... plz login again..!!");
+				response.getWriter().write(e.getMessage());
 				return;
 			}
 		}

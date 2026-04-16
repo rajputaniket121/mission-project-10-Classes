@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Spring Security configuration class for JWT-based authentication.
@@ -32,7 +33,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/Auth/**", "/User/profilePic/**", "/Jasper/report/**").permitAll()
-				.anyRequest().authenticated().and().sessionManagement()
+				.anyRequest().authenticated().and()
+				.exceptionHandling()
+		        .authenticationEntryPoint((request, response, authException) -> {
+		            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		            response.getWriter().write("Token does not exist !!!");
+		        })
+				.and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

@@ -26,27 +26,13 @@ export class AuthServiceService implements HttpInterceptor {
         }
       })
     }
-    //console.log(req.headers.get("Authorization"))
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
 
-        // if (error.status === 503) {
-        //   const message = error.error?.result?.message;
-        //   this.router.navigate([this.router.url], {
-        //     queryParams: { errorMessage: message },
-        //   });
-        // }
-
         if (error.status === 401) {
-          this.router.navigate(['/login'], {
-            queryParams: { errorMessage: error.error },
-          });
-        }
-
-        if (error.status === 403) {
           localStorage.clear();
           this.router.navigate(['/login'], {
-            queryParams: { errorMessage: 'Token is expired... plz login again..!!' },
+            queryParams: { errorMessage: error.error },
           });
         }
         return throwError(error);
