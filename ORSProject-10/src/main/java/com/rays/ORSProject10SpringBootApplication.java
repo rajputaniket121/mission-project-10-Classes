@@ -1,12 +1,9 @@
 package com.rays;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -25,7 +22,7 @@ public class ORSProject10SpringBootApplication {
 	/**
 	 * Configures CORS settings to allow cross-origin requests from frontend
 	 * applications. Allows requests from localhost:4200 (Angular dev server) and
-	 * localhost:8080.
+	 * localhost:8081.
 	 * 
 	 * @return WebMvcConfigurer with CORS configuration
 	 */
