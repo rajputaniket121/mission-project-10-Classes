@@ -92,19 +92,14 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 		try {
 			T dto = form.getDto();
 			T existsDTO = service.findByUniqueKey(dto.getUniqueKey(), dto.getUniqueValue(), userContext);
-			System.out.println("existsDTO " + existsDTO);
-			if (existsDTO != null && dto.getId() != null && !existsDTO.getId().equals(dto.getId())) {
-				if (existsDTO != null && dto.getId() == null || existsDTO.getId() != dto.getId()) {
+				if (existsDTO != null && (dto.getId() == null || existsDTO.getId() != dto.getId())) {
 					res.addMessage(dto.getLabel() + " already exists");
 					res.setSuccess(false);
 					return res;
 				}
-			}
+			
 			Long exId = dto.getId();
 			long id = service.save(dto, userContext);
-			System.out.println("value of id " + id);
-			System.out.println("value of exid " + exId);
-			System.out.println("value of dto.getid " + dto.getId());
 			if (id > 0 || exId == null) {
 				res.addMessage(dto.getTableName() + " added successfully");
 				res.addData(dto);
