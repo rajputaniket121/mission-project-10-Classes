@@ -26,6 +26,8 @@ import { MyprofileComponent } from './user/myprofile.component';
 import { ChangepasswordComponent } from './user/changepassword.component';
 import { MarksheetmeritListComponent } from './marksheet/marksheetmerit-list.component';
 import { GetmarksheetComponent } from './marksheet/getmarksheet.component';
+import { LeaveRequestComponent } from './leave-request/leave-request.component';
+import { LeaveRequestListComponent } from './leave-request/leave-request-list.component';
 
 const routes: Routes = [
   {
@@ -162,7 +164,20 @@ const routes: Routes = [
   {
     path: 'facultylist',
     component: FacultyListComponent,
-  }, {
+  },
+  {
+    path: 'leaverequest',
+    component: LeaveRequestComponent
+  },
+  {
+    path: 'leaverequest/:id',
+    component: LeaveRequestComponent
+  },
+  {
+    path: 'leaverequestlist',
+    component: LeaveRequestListComponent
+  },
+  {
     path: 'forgotpassword',
     component: ForgotpasswordComponent
   },

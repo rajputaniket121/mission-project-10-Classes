@@ -22,6 +22,9 @@ public class LeaveRequestDAOImpl extends BaseDAOImpl<LeaveRequestDTO> implements
 		List<Predicate> conditions = new ArrayList<Predicate>();
 		
 		if(dto!=null) {
+			if(!isZeroNumber(dto.getId())) {
+				conditions.add(builder.equal(qRoot.get("id"), dto.getId()));
+			}
 			if(!isEmptyString(dto.getEmployeeName())) {
 				conditions.add(builder.like(qRoot.get("employeeName"), dto.getEmployeeName() +"%"));
 			}

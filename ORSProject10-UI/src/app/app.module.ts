@@ -40,6 +40,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { GetmarksheetComponent } from './marksheet/getmarksheet.component';
 import { MarksheetmeritListComponent } from './marksheet/marksheetmerit-list.component';
 import { CommonModule } from '@angular/common';
+import { LeaveRequestComponent } from './leave-request/leave-request.component';
+import { LeaveRequestListComponent } from './leave-request/leave-request-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -76,6 +78,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChangepasswordComponent,
     GetmarksheetComponent,
     MarksheetmeritListComponent,
+    LeaveRequestComponent,
+    LeaveRequestListComponent,
   ],
   imports: [BrowserModule, CommonModule, AppRoutingModule, HttpClientModule, FormsModule,
     TranslateModule.forRoot({

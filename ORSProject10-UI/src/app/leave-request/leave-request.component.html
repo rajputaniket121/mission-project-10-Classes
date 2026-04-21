@@ -1,0 +1,93 @@
+<div class="d-flex flex-column min-vh-100">
+    <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+        <div class="card grad-card shadow-sm w-100" style="max-width: 800px;">
+            <div class="card-body py-3">
+                <h5 class="text-center text-success fw-bold mb-3">
+                    <span *ngIf="!form.data.id">Add Leave-Request</span>
+                    <span *ngIf="form.data.id>0">Update Leave-Request</span>
+                </h5>
+
+                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                    *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                    *ngIf="form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form>
+                    <div class="row">
+                        <!-- Employee Name-->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Employee Name</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-id-card text-muted"></i></span>
+                                <input type="text" class="form-control" name="employeeName"
+                                    [(ngModel)]="form.data.employeeName" placeholder="Enter Employee Name">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.employeeName}}</div>
+                        </div>
+
+                        <!-- Leave Type -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Leave Type</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-user text-muted"></i></span>
+                                <select name="leaveType" [(ngModel)]="form.data.leaveType" style="width: 94%;">
+                                    <option value="undefined">------------Select------------</option>
+                                    <option value="Sick Leave">Sick Leave</option>
+                                    <option value="Personal">Personal</option>
+                                    <option value="Fastival">Fastival</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.leaveType}}</div>
+                        </div>
+
+                        <!-- Leave Date -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Leave Date</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-calendar text-muted"></i></span>
+                                <input type="date" class="form-control" name="leaveDate"
+                                    [(ngModel)]="form.data.leaveDate"
+                                    [ngModel]="form.data.leaveDate | date:'yyyy-MM-dd'" placeholder="Select Leave Date">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.leaveDate}}</div>
+                        </div>
+
+
+                        <!--Reason-->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Reason</strong> <span class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-phone text-muted"></i></span>
+                                <input type="text" class="form-control" name="reason" [(ngModel)]="form.data.reason"
+                                    maxlength="10" placeholder="Enter Reason">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.reason}}</div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-2">
+                        <button type="button" class="btn btn-success btn-sm px-4" (click)="submit()">Save</button>
+                        &nbsp;
+                        <button type="button" class="btn btn-secondary btn-sm px-4"
+                            (click)="forward('leaverequestlist')">List</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

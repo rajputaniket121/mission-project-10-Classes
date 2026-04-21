@@ -89,32 +89,24 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 		if (!res.isSuccess()) {
 			return res;
 		}
-		try {
-			T dto = form.getDto();
-			T existsDTO = service.findByUniqueKey(dto.getUniqueKey(), dto.getUniqueValue(), userContext);
-				if (existsDTO != null && (dto.getId() == null || existsDTO.getId() != dto.getId())) {
-					res.addMessage(dto.getLabel() + " already exists");
-					res.setSuccess(false);
-					return res;
-				}
-			
-			Long exId = dto.getId();
-			long id = service.save(dto, userContext);
-			if (id > 0 || exId == null) {
-				res.addMessage(dto.getTableName() + " added successfully");
-				res.addData(dto);
-			} else if (id == dto.getId()) {
-				res.addMessage(dto.getTableName() + " updated successfully");
-				res.addData(dto);
-			} else {
-				res.addMessage("issue in adding");
-				res.setSuccess(false);
-			}
-		} catch (Exception e) {
+		T dto = form.getDto();
+		T existsDTO = service.findByUniqueKey(dto.getUniqueKey(), dto.getUniqueValue(), userContext);
+		if (existsDTO != null && (dto.getId() == null || existsDTO.getId() != dto.getId())) {
+			res.addMessage(dto.getLabel() + " already exists");
 			res.setSuccess(false);
-			res.addMessage("Database Down Please Try again later");
-			e.printStackTrace();
+			return res;
 		}
+
+		Long exId = dto.getId();
+		long id = service.save(dto, userContext);
+		if (exId == null) {
+			res.addMessage(dto.getTableName() + " added successfully");
+			res.addData(dto);
+		} else {
+			res.addMessage(dto.getTableName() + " updated successfully");
+			res.addData(dto);
+		}
+
 		return res;
 	}
 
@@ -127,19 +119,14 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 	@GetMapping(value = "/get/{id}")
 	public ORSResponse get(@PathVariable long id) {
 		ORSResponse res = new ORSResponse(true);
-		try {
-			T dto = service.findById(id, userContext);
-			if (dto != null) {
-				res.addData(dto);
-			} else {
-				res.setSuccess(false);
-				res.addMessage("Record not Found");
-			}
-		} catch (Exception e) {
+		T dto = service.findById(id, userContext);
+		if (dto != null) {
+			res.addData(dto);
+		} else {
 			res.setSuccess(false);
-			res.addMessage("Database Down Please Try again later");
-			e.printStackTrace();
+			res.addMessage("Record not Found");
 		}
+
 		return res;
 	}
 
@@ -156,25 +143,20 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 	public ORSResponse deleteMany(@PathVariable String ids, @RequestParam("pageNo") String pageNo,
 			@RequestBody F form) {
 		ORSResponse res = new ORSResponse(true);
-		try {
-			for (String id : ids.split(",")) {
-				service.delete(Long.parseLong(id), userContext);
-			}
-			T dto = form.getDto();
-			List<T> list = service.search(dto, Integer.parseInt(pageNo), pageSize, userContext);
-			List<T> nextList = service.search(dto, Integer.parseInt(pageNo) + 1, pageSize, userContext);
-			if (list.size() == 0) {
-				res.setSuccess(false);
-				res.addMessage("Record not found..!!");
-			} else {
-				res.setSuccess(true);
-				res.addMessage("Records Deleted Successfully");
-				res.addData(list);
-				res.addResult("nextListSize", nextList.size());
-			}
-		} catch (Exception e) {
+		for (String id : ids.split(",")) {
+			service.delete(Long.parseLong(id), userContext);
+		}
+		T dto = form.getDto();
+		List<T> list = service.search(dto, Integer.parseInt(pageNo), pageSize, userContext);
+		List<T> nextList = service.search(dto, Integer.parseInt(pageNo) + 1, pageSize, userContext);
+		if (list.size() == 0) {
 			res.setSuccess(false);
-			res.addMessage("Database Down Please Try again later");
+			res.addMessage("Record not found..!!");
+		} else {
+			res.setSuccess(true);
+			res.addMessage("Records Deleted Successfully");
+			res.addData(list);
+			res.addResult("nextListSize", nextList.size());
 		}
 		return res;
 	}
@@ -189,24 +171,17 @@ public abstract class BaseCtl<T extends BaseDTO, F extends BaseForm<T>, S extend
 	@RequestMapping(value = "/search/{pageNo}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse search(@RequestBody(required = false) F form, @PathVariable(required = false) int pageNo) {
 		ORSResponse response = new ORSResponse();
-		try {
-			pageNo = (pageNo == 0) ? 0 : pageNo;
-			System.out.println(form);
-			T dto = form.getDto();
-			List<T> list = service.search(dto, pageNo, pageSize, userContext);
-			List<T> nextList = service.search(dto, pageNo + 1, pageSize, userContext);
-			if (list.isEmpty()) {
-				response.addMessage("No Record Found");
-			} else {
-				response.setSuccess(true);
-				response.addMessage("Records Found");
-				response.addResult("nextListSize", nextList.size());
-				response.addData(list);
-			}
-		} catch (Exception e) {
-			response.setSuccess(false);
-			response.addMessage("Database Down Please Try again later");
-			e.printStackTrace();
+		pageNo = (pageNo == 0) ? 0 : pageNo;
+		T dto = form.getDto();
+		List<T> list = service.search(dto, pageNo, pageSize, userContext);
+		List<T> nextList = service.search(dto, pageNo + 1, pageSize, userContext);
+		if (list.isEmpty()) {
+			response.addMessage("No Record Found");
+		} else {
+			response.setSuccess(true);
+			response.addMessage("Records Found");
+			response.addResult("nextListSize", nextList.size());
+			response.addData(list);
 		}
 		return response;
 	}

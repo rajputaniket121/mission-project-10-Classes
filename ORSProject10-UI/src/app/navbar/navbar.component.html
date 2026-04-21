@@ -180,6 +180,22 @@
                     </div>
                 </li>
 
+                <!-- LeaveRequest -->
+                <li class="nav-item dropdown px-1">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'Nav.LeaveRequest' | translate }}
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/leaverequest']">
+                            <i class="fas fa-book-open mr-2"></i>
+                            {{ 'Links.AddLeaveRequest' | translate }}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/leaverequestlist']">
+                            <i class="fas fa-list mr-2"></i>
+                            {{ 'Links.LeaveRequestList' | translate }}
+                        </a>
+                    </div>
+                </li>
+
             </ng-container>
 
             <!-- PROFILE -->

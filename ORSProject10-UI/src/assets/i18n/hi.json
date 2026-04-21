@@ -34,7 +34,8 @@
         "Course": "कोर्स",
         "Subject": "विषय",
         "Timetable": "टाइमटेबल",
-        "Faculty": "फैकल्टी"
+        "Faculty": "फैकल्टी",
+        "LeaveRequest": "अवकाश अनुरोध"
     },
     "Links": {
         "MyProfile": "मेरा प्रोफ़ाइल",
@@ -57,6 +58,8 @@
         "TimetableList": "टाइमटेबल सूची",
         "AddFaculty": "फैकल्टी जोड़ें",
         "FacultyList": "फैकल्टी सूची",
+        "AddLeaveRequest": "अवकाश अनुरोध जोड़ें",
+        "LeaveRequestList": "अवकाश अनुरोध सूची",
         "Logout": "लॉगआउट",
         "Dashboard": "डैशबोर्ड",
         "Login": "लॉगिन"
