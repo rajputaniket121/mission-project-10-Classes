@@ -48,6 +48,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the registered user DTO
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public UserDTO register(UserDTO dto, UserContext userContext) {
 
 		Long id = add(dto, userContext);
@@ -82,6 +83,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the authenticated user DTO, null if authentication fails
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public UserDTO authenticate(String loginId, String password) {
 
 		UserDTO dto = findByLoginId(loginId, null);
@@ -109,6 +111,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the user DTO if found, null otherwise
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public UserDTO forgotPassword(String loginId) {
 
 		UserDTO dto = findByLoginId(loginId, null);
@@ -143,6 +146,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the updated user DTO, null if old password is invalid
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public UserDTO changePassword(String loginId, String oldPassword, String newPassword, UserContext userContext) {
 
 		UserDTO dto = findByLoginId(loginId, userContext);
