@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rays.common.UserContext;
@@ -48,7 +49,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the registered user DTO
 	 */
 	@Override
-	@Transactional(readOnly = true)
 	public UserDTO register(UserDTO dto, UserContext userContext) {
 
 		Long id = add(dto, userContext);
@@ -83,12 +83,12 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the authenticated user DTO, null if authentication fails
 	 */
 	@Override
-	@Transactional(readOnly = true)
 	public UserDTO authenticate(String loginId, String password) {
 
 		UserDTO dto = findByLoginId(loginId, null);
 
 		if (dto != null) {
+			System.out.println("Value of UnsuccessfullLoginAttempt before db update  "+dto.getUnsuccessfullLoginAttempt());
 			UserContext userContext = new UserContext(dto);
 			if (password.equals(dto.getPassword())) {
 				dto.setLastLogin(new Timestamp((new Date()).getTime()));
@@ -111,7 +111,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the user DTO if found, null otherwise
 	 */
 	@Override
-	@Transactional(readOnly = true)
 	public UserDTO forgotPassword(String loginId) {
 
 		UserDTO dto = findByLoginId(loginId, null);
@@ -146,7 +145,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the updated user DTO, null if old password is invalid
 	 */
 	@Override
-	@Transactional(readOnly = true)
 	public UserDTO changePassword(String loginId, String oldPassword, String newPassword, UserContext userContext) {
 
 		UserDTO dto = findByLoginId(loginId, userContext);
@@ -178,4 +176,13 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 			return null;
 		}
 	}
+	
+//	@Override
+//	//@Transactional(readOnly = true)
+//	public void update(UserDTO dto, UserContext userContext) {
+//		// TODO Auto-generated method stub
+//		super.update(dto, userContext);
+//	}
+	
+	
 }

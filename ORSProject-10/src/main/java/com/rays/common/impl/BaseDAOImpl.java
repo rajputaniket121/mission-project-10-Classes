@@ -1,6 +1,7 @@
 package com.rays.common.impl;
 
 import java.util.Date;
+import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -11,6 +12,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import com.rays.common.BaseDAOInt;
 import com.rays.common.BaseDTO;
@@ -24,6 +29,9 @@ import com.rays.common.UserContext;
  * @param <T> DTO type extending BaseDTO
  */
 public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
+	
+	@Autowired
+	private DataSource dataSource;
 
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -64,6 +72,10 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	 */
 	@Override
 	public long add(T dto, UserContext userContext) {
+		
+		Connection daoConn = DataSourceUtils.getConnection(dataSource);
+		System.out.println(
+				"🔗 DAO: Spring-managed Connection = " + daoConn + " | hashCode: " + System.identityHashCode(daoConn));
 
 		dto.setCreatedBy(userContext.getLoginId());
 		dto.setCreatedDateTime(new Timestamp(new Date().getTime()));

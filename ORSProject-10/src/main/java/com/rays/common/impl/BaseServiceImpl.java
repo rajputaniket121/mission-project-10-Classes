@@ -1,9 +1,12 @@
 package com.rays.common.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +25,8 @@ import com.rays.common.UserContext;
  */
 @Transactional
 public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implements BaseServiceInt<T> {
+	@Autowired
+	private DataSource dataSource;
 	
 	@Autowired
 	protected D dao;
@@ -68,6 +73,11 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public long save(T dto, UserContext userContext) {
+		
+		Connection daoConn = DataSourceUtils.getConnection(dataSource);
+		System.out.println(
+				"🔗 DAO: Spring-managed Connection = " + daoConn + " | hashCode: " + System.identityHashCode(daoConn));
+		
 		Long id = dto.getId();
 		if(id != null && id > 0) {
 			update(dto, userContext);

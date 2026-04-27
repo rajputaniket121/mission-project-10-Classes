@@ -43,7 +43,8 @@ public class ApplicationExceptionHandlerCtl {
 	 */
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<ORSResponse> handleRuntimeException(RuntimeException e) {
-		System.out.println(e.getMessage());
+		System.out.println("\n====== CONTROLLER ADVICE HIT ======");
+		System.out.println("Handled exception: " + e.getMessage());
 		ORSResponse res = new ORSResponse(false);
 		res.addMessage(e.getMessage());
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR) // 500
