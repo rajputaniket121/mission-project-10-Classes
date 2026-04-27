@@ -29,9 +29,6 @@ import com.rays.common.UserContext;
  * @param <T> DTO type extending BaseDTO
  */
 public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
-	
-	@Autowired
-	private DataSource dataSource;
 
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -72,10 +69,6 @@ public abstract class BaseDAOImpl<T extends BaseDTO> implements BaseDAOInt<T> {
 	 */
 	@Override
 	public long add(T dto, UserContext userContext) {
-		
-		Connection daoConn = DataSourceUtils.getConnection(dataSource);
-		System.out.println(
-				"🔗 DAO: Spring-managed Connection = " + daoConn + " | hashCode: " + System.identityHashCode(daoConn));
 
 		dto.setCreatedBy(userContext.getLoginId());
 		dto.setCreatedDateTime(new Timestamp(new Date().getTime()));

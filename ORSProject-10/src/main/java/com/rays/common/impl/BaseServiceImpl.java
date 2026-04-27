@@ -23,10 +23,7 @@ import com.rays.common.UserContext;
  * @param <T> DTO type extending BaseDTO
  * @param <D> DAO type extending BaseDAOInt
  */
-@Transactional
 public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implements BaseServiceInt<T> {
-	@Autowired
-	private DataSource dataSource;
 	
 	@Autowired
 	protected D dao;
@@ -73,10 +70,6 @@ public class BaseServiceImpl<T extends BaseDTO,D extends BaseDAOInt<T>> implemen
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public long save(T dto, UserContext userContext) {
-		
-		Connection daoConn = DataSourceUtils.getConnection(dataSource);
-		System.out.println(
-				"🔗 DAO: Spring-managed Connection = " + daoConn + " | hashCode: " + System.identityHashCode(daoConn));
 		
 		Long id = dto.getId();
 		if(id != null && id > 0) {
