@@ -24,9 +24,14 @@ public class CollegeServiceImpl extends BaseServiceImpl<CollegeDTO, CollegeDAOIn
 	public long add(CollegeDTO dto, UserContext userContext) {
 		
 		long pk = dao.add(dto, userContext);
-		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
+		
+		System.out.println("new data Added  with id "+pk);
+		
+		System.out.println("get data by newly added id "+dao.findByPk(dto.getId(), userContext));
+		
+		System.out.println("Added in db");
 		if(true) {
-			throw new RuntimeException("exception in serivice");
+			throw new RuntimeException("exception in service");
 		}
 		return pk;
 	}

@@ -74,7 +74,7 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text"><i class="fa fa-calendar text-muted"></i></span>
                                 <input type="date" class="form-control" name="dob" [(ngModel)]="form.data.dob"
-                                    placeholder="Select Date of Birth">
+                                    [max]="maxDob" [min]="minDob" placeholder="Select Date of Birth">
                             </div>
                             <div class="text-danger small">{{form.inputerror.dob}}</div>
                         </div>

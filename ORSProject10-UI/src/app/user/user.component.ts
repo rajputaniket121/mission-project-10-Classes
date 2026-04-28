@@ -28,5 +28,21 @@ export class UserComponent extends BaseCtl {
       reader.readAsDataURL(file);
     }
   }
+
+  today = new Date();
+
+  // Max DOB = today - 18 years
+  maxDob: string = new Date(
+    this.today.getFullYear() - 18,
+    this.today.getMonth(),
+    this.today.getDate()
+  ).toISOString().split('T')[0];
+
+  // Optional: minimum DOB (e.g. 100 years ago)
+  minDob: string = new Date(
+    this.today.getFullYear() - 70,
+    this.today.getMonth(),
+    this.today.getDate()
+  ).toISOString().split('T')[0];
 }
 

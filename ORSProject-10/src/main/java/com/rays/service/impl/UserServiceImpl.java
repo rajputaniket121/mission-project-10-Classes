@@ -83,6 +83,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO,UserDAOInt> impleme
 	 * @return the authenticated user DTO, null if authentication fails
 	 */
 	@Override
+	//@Transactional(readOnly = true)
 	public UserDTO authenticate(String loginId, String password) {
 
 		UserDTO dto = findByLoginId(loginId, null);

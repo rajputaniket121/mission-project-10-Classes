@@ -30,6 +30,15 @@ export class HttpServiceService {
   }
 
   private handleError(error: any, callback: any) {
+
+    if (error.status === 0) {
+      callback({
+        success: false,
+        result: {
+          message: 'Server is down or not reachable'
+        }
+      })
+    }
     if (error.status === 503) {
       callback({
         success: false,
