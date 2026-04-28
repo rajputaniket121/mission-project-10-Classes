@@ -36,6 +36,22 @@
                             <div class="text-danger small">{{form.inputerror.employeeName}}</div>
                         </div>
 
+                        <!-- <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Employee Name</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-id-card text-muted"></i></span>
+                                <select class="form-select" name="employeeName" [(ngModel)]="form.data.employeeName"
+                                    style="width: 94%;">
+                                    <option value="undefined">------------Select------------</option>
+                                    <option *ngFor="let obj of form.preload.employeeLis" [value]="obj.firstName">
+                                        {{obj.firstName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.employeeName}}</div>
+                        </div> -->
+
                         <!-- Leave Type -->
                         <div class="col-md-12 mb-2">
                             <label class="form-label"><strong>Leave Type</strong> <span

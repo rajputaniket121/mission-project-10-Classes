@@ -56,8 +56,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 
 		final String authorizationHeader = request.getHeader("Authorization");
 
-		System.out.println("JWT Token ======>>>>> " + authorizationHeader);
-
 		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
 
 			String jwtToken = authorizationHeader.substring(7);
@@ -69,18 +67,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 				if (!jwtUtil.validateToken(jwtToken, loginId)) {
 					throw new Exception("Invalid JWT token");
 				}
-
-//				if (loginId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-//
-//					UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(loginId);
-//
-//					UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-//							userDetails, null, userDetails.getAuthorities());
-//
-//					authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//
-//					SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-//				}
 				
 				 if (loginId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 	                    String role = jwtUtil.extractRole(jwtToken);

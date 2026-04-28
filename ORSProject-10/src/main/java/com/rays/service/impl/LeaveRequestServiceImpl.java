@@ -21,22 +21,22 @@ public class LeaveRequestServiceImpl extends BaseServiceImpl<LeaveRequestDTO, Le
 	@Autowired
 	private DataSource dataSource;
 	
-	@Transactional(readOnly = false)
-	@Override
-	public long add(LeaveRequestDTO dto, UserContext userContext) {
-	        System.out.println("\n---- SERVICE: CALLING DAO ----");
-	        Connection springConn = DataSourceUtils.getConnection(dataSource);
-	        System.out.println("🔗 SERVICE: Spring-managed Connection = " + 
-	            springConn + " | hashCode: " + System.identityHashCode(springConn));
-
-	        long pk = dao.add(dto, userContext);
-	        System.out.println(dao.findByPk(pk, userContext));
-
-	        System.out.println("\n---- SERVICE: AFTER DAO ----");
-	        if(true) {
-	        	throw new RuntimeException("Exception in add service");
-	        }
-	    return pk;
-	}
+//	@Transactional(readOnly = false)
+//	@Override
+//	public long add(LeaveRequestDTO dto, UserContext userContext) {
+//	        System.out.println("\n---- SERVICE: CALLING DAO ----");
+//	        Connection springConn = DataSourceUtils.getConnection(dataSource);
+//	        System.out.println("🔗 SERVICE: Spring-managed Connection = " + 
+//	            springConn + " | hashCode: " + System.identityHashCode(springConn));
+//
+//	        long pk = dao.add(dto, userContext);
+//	        System.out.println(dao.findByPk(pk, userContext));
+//
+//	        System.out.println("\n---- SERVICE: AFTER DAO ----");
+//	        if(true) {
+//	        	throw new RuntimeException("Exception in add service");
+//	        }
+//	    return pk;
+//	}
 
 }
