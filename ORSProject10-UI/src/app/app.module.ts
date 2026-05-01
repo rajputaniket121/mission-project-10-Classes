@@ -42,6 +42,8 @@ import { MarksheetmeritListComponent } from './marksheet/marksheetmerit-list.com
 import { CommonModule } from '@angular/common';
 import { LeaveRequestComponent } from './leave-request/leave-request.component';
 import { LeaveRequestListComponent } from './leave-request/leave-request-list.component';
+import { SchedulerJobComponent } from './scheduler-job/scheduler-job.component';
+import { SchedulerJobListComponent } from './scheduler-job/scheduler-job-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -80,6 +82,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MarksheetmeritListComponent,
     LeaveRequestComponent,
     LeaveRequestListComponent,
+    SchedulerJobComponent,
+    SchedulerJobListComponent,
   ],
   imports: [BrowserModule, CommonModule, AppRoutingModule, HttpClientModule, FormsModule,
     TranslateModule.forRoot({

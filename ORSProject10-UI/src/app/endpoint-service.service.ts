@@ -16,5 +16,6 @@ export class EndpointServiceService {
   public TIMETABLE = this.SERVER_URL + '/Timetable';
   public FACULTY = this.SERVER_URL + '/Faculty';
   public LEAVEREQUEST = this.SERVER_URL + '/LeaveRequest';
+  public SCHEDULERJOB = this.SERVER_URL + '/SchedulerJob';
 
 }

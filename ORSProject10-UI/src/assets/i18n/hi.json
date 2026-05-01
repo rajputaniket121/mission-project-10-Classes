@@ -35,7 +35,8 @@
         "Subject": "विषय",
         "Timetable": "टाइमटेबल",
         "Faculty": "फैकल्टी",
-        "LeaveRequest": "अवकाश अनुरोध"
+        "LeaveRequest": "अवकाश अनुरोध",
+        "Schedulerjob": "शेड्यूलर कार्य"
     },
     "Links": {
         "MyProfile": "मेरा प्रोफ़ाइल",
@@ -60,6 +61,8 @@
         "FacultyList": "फैकल्टी सूची",
         "AddLeaveRequest": "अवकाश अनुरोध जोड़ें",
         "LeaveRequestList": "अवकाश अनुरोध सूची",
+        "AddSchedulerjob": "शेड्यूलर कार्य जोड़ें",
+        "SchedulerjobList": "शेड्यूलर कार्य सूची",
         "Logout": "लॉगआउट",
         "Dashboard": "डैशबोर्ड",
         "Login": "लॉगिन"

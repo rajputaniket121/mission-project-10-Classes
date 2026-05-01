@@ -28,6 +28,8 @@ import { MarksheetmeritListComponent } from './marksheet/marksheetmerit-list.com
 import { GetmarksheetComponent } from './marksheet/getmarksheet.component';
 import { LeaveRequestComponent } from './leave-request/leave-request.component';
 import { LeaveRequestListComponent } from './leave-request/leave-request-list.component';
+import { SchedulerJobComponent } from './scheduler-job/scheduler-job.component';
+import { SchedulerJobListComponent } from './scheduler-job/scheduler-job-list.component';
 
 const routes: Routes = [
   {
@@ -176,6 +178,18 @@ const routes: Routes = [
   {
     path: 'leaverequestlist',
     component: LeaveRequestListComponent
+  },
+  {
+    path: 'schedulerjob',
+    component: SchedulerJobComponent,
+  },
+  {
+    path: 'schedulerjob/:id',
+    component: SchedulerJobComponent,
+  },
+  {
+    path: 'schedulerjoblist',
+    component: SchedulerJobListComponent,
   },
   {
     path: 'forgotpassword',

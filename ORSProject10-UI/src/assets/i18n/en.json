@@ -35,7 +35,8 @@
         "Subject": "Subject",
         "Timetable": "Timetable",
         "Faculty": "Faculty",
-        "LeaveRequest": "LeaveRequest"
+        "LeaveRequest": "LeaveRequest",
+        "Schedulerjob": "SchedulerJob"
     },
     "Links": {
         "MyProfile": "My Profile",
@@ -60,6 +61,8 @@
         "FacultyList": "Faculty List",
         "AddLeaveRequest": "Add Leave Request",
         "LeaveRequestList": "Leave Request List",
+        "AddSchedulerjob": "Add Scheduler Job",
+        "SchedulerjobList": "Scheduler Job List",
         "Logout": "Logout",
         "Dashboard": "Dashboard",
         "Login": "Login"

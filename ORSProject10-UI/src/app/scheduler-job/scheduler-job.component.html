@@ -1,0 +1,90 @@
+<div class="d-flex flex-column min-vh-100">
+    <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+        <div class="card grad-card shadow-sm w-100" style="max-width: 800px;">
+            <div class="card-body py-3">
+                <h5 class="text-center text-success fw-bold mb-3">
+                    <span *ngIf="!form.data.id">Add Scheduler Job</span>
+                    <span *ngIf="form.data.id>0">Update Scheduler Job</span>
+                </h5>
+
+                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                    *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                    *ngIf="form.error && form.message">
+                    {{ form.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form>
+                    <div class="row">
+                        <!-- Job Code -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Job Code</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-cog text-muted"></i></span>
+                                <input type="text" class="form-control" name="jobCode" [(ngModel)]="form.data.jobCode"
+                                    maxlength="50" placeholder="Enter Job Code">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.jobCode}}</div>
+                        </div>
+
+                        <!-- Job Name -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Job Name</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-file text-muted"></i></span>
+                                <input type="text" class="form-control" name="jobName" [(ngModel)]="form.data.jobName"
+                                    maxlength="100" placeholder="Enter Job Name">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.jobName}}</div>
+                        </div>
+
+                        <!-- Cron Expression -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Cron Expression</strong> <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-clock text-muted"></i></span>
+                                <input type="text" class="form-control" name="cronExpression"
+                                    [(ngModel)]="form.data.cronExpression" maxlength="100"
+                                    placeholder="Enter Cron Expression ">
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.cronExpression}}</div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label"><strong>Status</strong> <span class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="fa fa-toggle-on text-muted"></i></span>
+                                <select class="form-select" name="status" [(ngModel)]="form.data.status">
+                                    <option value="undefined">------------Select------------</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="text-danger small">{{form.inputerror.status}}</div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-2">
+                        <button type="button" class="btn btn-success btn-sm px-4" (click)="submit()">Save</button>
+                        &nbsp;
+                        <button type="button" class="btn btn-secondary btn-sm px-4"
+                            (click)="forward('schedulerjoblist')">List</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
